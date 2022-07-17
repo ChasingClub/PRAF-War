@@ -1,0 +1,49 @@
+world:
+  creator: CONSOLE
+  creation-time: 1657781896897
+  last-world-interaction: 1658023649621
+  world-type: NORMAL
+  difficulty: PEACEFUL
+  gameMode: SURVIVAL
+  pvp-enabled: true
+world_nether:
+  creator: CONSOLE
+  creation-time: 1657781896904
+  last-world-interaction: 1657781896904
+  world-type: NETHER
+  difficulty: PEACEFUL
+  gameMode: SURVIVAL
+  pvp-enabled: true
+world_the_end:
+  creator: CONSOLE
+  creation-time: 1657781896907
+  last-world-interaction: 1657781896907
+  world-type: END
+  difficulty: PEACEFUL
+  gameMode: SURVIVAL
+  pvp-enabled: true
+Netherite_game:
+  creator: RichterYT
+  creation-time: 1657781924091
+  last-world-interaction: 1658024150201
+  world-type: VOID
+  difficulty: NORMAL
+  gameMode: ADVENTURE
+  pvp-enabled: true
+  game-mode: ADVENTURE
+hub:
+  creator: RichterYT
+  creation-time: 1657947410260
+  last-world-interaction: 1658024124668
+  world-type: VOID
+  difficulty: PEACEFUL
+  gameMode: ADVENTURE
+  pvp-enabled: false
+Wardens:
+  creator: Pinont_
+  creation-time: 1658024242905
+  last-world-interaction: 1658024242905
+  world-type: VOID
+  difficulty: PEACEFUL
+  gameMode: ADVENTURE
+  pvp-enabled: false
