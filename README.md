@@ -1,20 +1,18 @@
 # **Netherite-Game**
-Minecraft 1.19 PVP server that includes unique minigame such as Warden Chase, Netherite Stack, other soon..
+Minecraft 1.19 PVP server that includes unique minigames such as Warden Chase, Netherite Stack, and many more coming soon.
 
 # What is Warden Chase?
 
-A minigame that all players have to complete 4 of the task and Escape away from the Curious Warden
-
-- Inspired by **dead by day light**
+A minigame where players have to find 4 keys, while running away from the Warden.
 
 # What is Netherite Stack?
 
-A diamond shield plot 1v1 that each of a player got kill will turn 1 pieces of diamond turn into netherite
-if each of the player dead with full set of netherite lose
+A shield PvP minigame, where whenever a player gets killed, that player will receive a piece of netherite armors/weapons.
+If the player with full netherite gear dies, they lose.
 
 ## Plugin Source Code
 
-**__[here](https://github.com/NetheriteGame/Netherite-Game/tree/main/dev/src/main)__**
+**__[Here!](https://github.com/NetheriteGame/Netherite-Game/tree/main/dev/src/main)__**
 
 ### Server IP: **Pinont.minehut.gg**
 
@@ -24,7 +22,7 @@ if each of the player dead with full set of netherite lose
 
 1. Pinont_ **(Server Owner)** - __*Plugin Developer, Builder*__
 2. RichterYT **(Server Admin)** - __*Game Developer, Builder*__
-3. Itdragclick **(Server Admin)** - __*Game Developer, Plugin Developer, Builder*__
+3. ItDragClick **(Server Admin)** - __*Game Developer, Plugin Developer, Builder*__
 
 
 ### IDE
