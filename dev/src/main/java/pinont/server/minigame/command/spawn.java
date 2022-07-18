@@ -19,10 +19,7 @@ public class spawn implements CommandExecutor {
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 p.teleport(SessionWorldSpawn);
             }
-            // Here we need to give items to our player
         }
-
-        // If the player (or console) uses our command correct, we can return true
         return true;
     }
 }
