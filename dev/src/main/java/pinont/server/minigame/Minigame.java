@@ -1,10 +1,12 @@
 package pinont.server.minigame;
 
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import pinont.server.minigame.command.*;
 import pinont.server.minigame.events.*;
 
 public final class Minigame extends JavaPlugin {
+    public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
 
 
     @Override
