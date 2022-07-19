@@ -13,3 +13,7 @@ commands:
   kit:
     description: kit
     usage: /kit
+
+  warden:
+    description: start warden chase game
+    usage: /warden

@@ -119,6 +119,26 @@ public class kits implements CommandExecutor {
                     target.getInventory().setStorageContents(weapon);
                     p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
+                } else if (args[1].equalsIgnoreCase("chainmail")) {
+
+                    ItemStack[] armor = new ItemStack[4];
+                    armor[0] = new ItemStack(Material.CHAINMAIL_BOOTS);
+                    armor[1] = new ItemStack(Material.CHAINMAIL_LEGGINGS);
+                    armor[2] = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+                    armor[3] = new ItemStack(Material.CHAINMAIL_HELMET);
+
+                    ItemStack[] weapon = new ItemStack[6];
+                    weapon[0] = new ItemStack(Material.IRON_SWORD);
+                    weapon[1] = new ItemStack(Material.IRON_AXE);
+                    weapon[2] = new ItemStack(Material.BOW);
+                    weapon[3] = new ItemStack(Material.CROSSBOW);
+                    weapon[4] = new ItemStack(Material.ARROW, 32);
+                    weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
+
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
+                    p.sendMessage(Plname + args[1] + " kit has been equiped!");
+
                 } else {
                     p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
                 }

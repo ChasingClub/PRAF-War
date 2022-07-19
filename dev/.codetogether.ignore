@@ -1,2 +1,3 @@
 
 src\main\java\pinont\server\minigame\Minigame.java
+src\main\java\pinont\server\minigame\events\wardens.java

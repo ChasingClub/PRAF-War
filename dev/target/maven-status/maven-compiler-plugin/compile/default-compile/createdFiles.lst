@@ -1,8 +1,7 @@
 pinont\server\minigame\command\kits.class
 pinont\server\minigame\command\spawn.class
-pinont\server\minigame\command\kitsTabable.class
 pinont\server\minigame\events\joinEvent.class
-pinont\server\minigame\events\wardens.class
 pinont\server\minigame\Minigame.class
+pinont\server\minigame\commandTabComplete\kitsTabable.class
 pinont\server\minigame\events\canceldrops.class
 pinont\server\minigame\events\dia_to_netherite.class
