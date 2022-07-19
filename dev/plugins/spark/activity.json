@@ -1,0 +1,28 @@
+[
+  {
+    "user": {
+      "type": "player",
+      "name": "Pinont_",
+      "uniqueId": "1ef0ba4a-36e1-42ee-820e-15946cc1dac9"
+    },
+    "time": 1658062893921,
+    "type": "Profiler",
+    "data": {
+      "type": "url",
+      "value": "https://spark.lucko.me/3TtqeB8pyL"
+    }
+  },
+  {
+    "user": {
+      "type": "player",
+      "name": "Pinont_",
+      "uniqueId": "1ef0ba4a-36e1-42ee-820e-15946cc1dac9"
+    },
+    "time": 1657940959991,
+    "type": "Heap dump summary",
+    "data": {
+      "type": "url",
+      "value": "https://spark.lucko.me/06nJBMLrxe"
+    }
+  }
+]
