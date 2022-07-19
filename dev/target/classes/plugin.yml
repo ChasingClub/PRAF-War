@@ -1,0 +1,15 @@
+name: Minigame
+version: '1.0.8-SNAPSHOT'
+main: pinont.server.minigame.Minigame
+api-version: 1.19
+authors: [ 'pinont' ]
+description: Minigames for Pinont's Server
+
+commands:
+  spawn:
+    description: go to spawn
+    usage: /spawn
+
+  kit:
+    description: kit
+    usage: /kit
