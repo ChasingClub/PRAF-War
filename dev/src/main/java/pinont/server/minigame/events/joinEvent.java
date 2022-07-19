@@ -13,9 +13,13 @@ public class joinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        World SessionWorld = Bukkit.getServer().getWorld("world");
-        Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
-        p.teleport(SessionWorldSpawn);
+        if(p.hasPermission("pinont.minigame.admin")) {
+            return;
+        } else {
+            World SessionWorld = Bukkit.getServer().getWorld("world");
+            Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
+            p.teleport(SessionWorldSpawn);
+        }
     }
 
 }

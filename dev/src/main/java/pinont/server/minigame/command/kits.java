@@ -1,12 +1,16 @@
 package pinont.server.minigame.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 import static pinont.server.minigame.Minigame.Plname;
 
@@ -16,7 +20,8 @@ public class kits implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (args.length > 0) {
-                if (args[0].equalsIgnoreCase("netherite")) {
+                Player target = Bukkit.getPlayer(args[0]);
+                if (args[1].equalsIgnoreCase("netherite")) {
 
                     ItemStack[] armor = new ItemStack[4];
                     armor[0] = new ItemStack(Material.NETHERITE_BOOTS);
@@ -32,11 +37,11 @@ public class kits implements CommandExecutor {
                     weapon[4] = new ItemStack(Material.ARROW, 32);
                     weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
 
-                    p.getInventory().setArmorContents(armor);
-                    p.getInventory().setStorageContents(weapon);
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
                     p.sendMessage(Plname + args[0] + " kit has been equiped!");
 
-                } else if (args[0].equalsIgnoreCase("diamond")) {
+                } else if (args[1].equalsIgnoreCase("diamond")) {
 
                     ItemStack[] armor = new ItemStack[4];
                     armor[0] = new ItemStack(Material.DIAMOND_BOOTS);
@@ -52,11 +57,11 @@ public class kits implements CommandExecutor {
                     weapon[4] = new ItemStack(Material.ARROW, 32);
                     weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
 
-                    p.getInventory().setArmorContents(armor);
-                    p.getInventory().setStorageContents(weapon);
-                    p.sendMessage(Plname + args[0] + " kit has been equiped!");;
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
+                    p.sendMessage(Plname + args[0] + " kit has been equiped!");
 
-                } else if (args[0].equalsIgnoreCase("gold")) {
+                } else if (args[1].equalsIgnoreCase("gold")) {
 
                     ItemStack[] armor = new ItemStack[4];
                     armor[0] = new ItemStack(Material.GOLDEN_BOOTS);
@@ -72,12 +77,12 @@ public class kits implements CommandExecutor {
                     weapon[4] = new ItemStack(Material.ARROW, 32);
                     weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
 
-                    p.getInventory().setArmorContents(armor);
-                    p.getInventory().setStorageContents(weapon);
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
                     p.sendMessage(Plname + args[0] + " kit has been equiped!");
 
 
-                } else if (args[0].equalsIgnoreCase("iron")) {
+                } else if (args[1].equalsIgnoreCase("iron")) {
 
                     ItemStack[] armor = new ItemStack[4];
                     armor[0] = new ItemStack(Material.IRON_BOOTS);
@@ -93,11 +98,11 @@ public class kits implements CommandExecutor {
                     weapon[4] = new ItemStack(Material.ARROW, 32);
                     weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
 
-                    p.getInventory().setArmorContents(armor);
-                    p.getInventory().setStorageContents(weapon);
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
                     p.sendMessage(Plname + args[0] + " kit has been equiped!");
 
-                } else if (args[0].equalsIgnoreCase("leather")) {
+                } else if (args[1].equalsIgnoreCase("leather")) {
 
                     ItemStack[] armor = new ItemStack[4];
                     armor[0] = new ItemStack(Material.LEATHER_BOOTS);
@@ -113,15 +118,15 @@ public class kits implements CommandExecutor {
                     weapon[4] = new ItemStack(Material.ARROW, 32);
                     weapon[5] = new ItemStack(Material.COOKED_BEEF, 64);
 
-                    p.getInventory().setArmorContents(armor);
-                    p.getInventory().setStorageContents(weapon);
-                    p.sendMessage(Plname + args[0] + " kit has been equiped!");
+                    target.getInventory().setArmorContents(armor);
+                    target.getInventory().setStorageContents(weapon);
+                    p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                 } else {
-                    p.sendMessage(Plname + "You need to provide the name of the kit\n/kit [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond "+ ChatColor.YELLOW+"|"+ ChatColor.WHITE +" Gold " + ChatColor.YELLOW +"|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|"+ ChatColor.WHITE +" Leather " + ChatColor.AQUA + "]");
+                    p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
                 }
             } else {
-                p.sendMessage(Plname + "You need to provide the name of the kit\n/kit [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond "+ ChatColor.YELLOW+"|"+ ChatColor.WHITE +" Gold " + ChatColor.YELLOW +"|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|"+ ChatColor.WHITE +" Leather " + ChatColor.AQUA + "]");
+                p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
             }
         } else {
             System.out.println("You need to be player to sent the command");
