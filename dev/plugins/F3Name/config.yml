@@ -10,7 +10,7 @@ groups:
   #Default group. DO NOT REMOVE!
   everyone:
     f3names:
-      - "Pre-testing Netherite Game"
+      - "Welcome to Netherite games"
     #Shuffle that list before displaying?
     shuffle: false
     #Refresh rate in ticks (1 second = 20 ticks)
@@ -18,26 +18,7 @@ groups:
   #Some example. You can edit or remove this
   "example":
     f3names:
-      - "N"
-      - "N."
-      - "N.E"
-      - "N.E."
-      - "N.E.T"
-      - "N.E.T."
-      - "N.E.T.H"
-      - "N.E.T.H.E"
-      - "N.E.T.H.E."
-      - "N.E.T.H.E.R"
-      - "N.E.T.H.E.R."
-      - "N.E.T.H.E.R.I"
-      - "N.E.T.H.E.R.I."
-      - "N.E.T.H.E.R.I.T"
-      - "N.E.T.H.E.R.I.T."
-      - "N.E.T.H.E.R.I.T.E"
-      - "N.E.T.H.E.R.I.T.E G"
-      - "N.E.T.H.E.R.I.T.E Ga"
-      - "N.E.T.H.E.R.I.T.E Gam"
-      - "N.E.T.H.E.R.I.T.E Game"
+      - "Neterite Minigame"
     #Shuffle and update-time are optional, their default values shown above
 
 #If set to true, disables this plugin and gives bungeecord side plugin ability to send

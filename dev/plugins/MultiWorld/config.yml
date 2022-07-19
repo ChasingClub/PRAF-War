@@ -16,14 +16,14 @@ usage: '%prefix%§cUsage: %command%'
 # Worlds that should be loaded when the server starts
 # WARNING: When the world is not registered by MultiWorld the world will not bee loaded
 # The world has to be imported manually! (Attention choose the correct WorldType)
-auto-load: ['Netherite_game']
+auto-load: ['Netherite_game', 'warden_chase']
 
 # Standard values for new worlds
 defaults:
-  world: hub
+  world: world
   difficulty: PEACEFUL
-  gameMode: ADVENTURE
-  pvp-enabled: false
+  gameMode: SURVIVAL
+  pvp-enabled: true
   spawn-animals: false
   spawn-monsters: false
 

@@ -164,7 +164,7 @@ entities:
     non-player-arrow-despawn-rate: default
     per-player-mob-spawns: true
     scan-for-legacy-ender-dragon: true
-    skeleton-horse-thunder-spawn-chance: default
+    skeleton-horse-thunder-spawn-chance: 0.01
     slime-spawn-height:
       slime-chunk:
         maximum: 40.0
@@ -207,7 +207,7 @@ environment:
   treasure-maps:
     enabled: true
     find-already-discovered:
-      loot-tables: default
+      loot-tables: 'false'
       villager-trade: false
   water-over-lava-flow-speed: 5
 feature-seeds:
@@ -221,12 +221,13 @@ fixes:
   fix-curing-zombie-villager-discount-exploit: true
   fix-items-merging-through-walls: false
   prevent-tnt-from-moving-in-water: false
+  remove-corrupt-tile-entities: false
   split-overstacked-loot: true
   tnt-entity-height-nerf: 0
 hopper:
   cooldown-when-full: true
   disable-move-event: false
-  ignore-occluding-blocks: false
+  ignore-occluding-blocks: true
 lootables:
   auto-replenish: false
   max-refills: -1
