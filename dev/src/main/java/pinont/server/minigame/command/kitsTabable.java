@@ -22,6 +22,15 @@ public class kitsTabable implements TabCompleter {
             }
 
             return playerNames;
+        } else if (args.length == 2) {
+            List<String> argruments = new ArrayList<>();
+            argruments.add("Netherite");
+            argruments.add("Diamond");
+            argruments.add("Gold");
+            argruments.add("Iron");
+            argruments.add("Leather");
+
+            return argruments;
         }
         return null;
     }

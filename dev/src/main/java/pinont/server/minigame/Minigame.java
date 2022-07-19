@@ -15,6 +15,7 @@ public final class Minigame extends JavaPlugin {
     public void onEnable() {
         this.getCommand("spawn").setExecutor(new spawn());
         this.getCommand("kit").setExecutor(new kits());
+        this.getCommand("kit").setTabCompleter(new kitsTabable());
         getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new wardens(), this);
