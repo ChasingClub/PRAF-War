@@ -10,6 +10,8 @@ public class canceldrops implements Listener {
     public void onPlayerDrops(PlayerDropItemEvent event) {
         if((event.getPlayer().getWorld().getName()).equals("Netherite_game")) {
             event.setCancelled(true); // cancel player drop event
+        } else if((event.getPlayer().getWorld().getName()).equals("world")) {
+            event.setCancelled(true); // cancel player drop event
         }
     }
 

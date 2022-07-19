@@ -4,8 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -48,6 +46,8 @@ public class dia_to_netherite implements Listener {
                 }
             } else if (target.getInventory().contains(Material.NETHERITE_AXE) && target.getInventory().contains(Material.SHIELD)) {
                 target.getInventory().setItemInOffHand(totem);
+            } else {
+                return;
             }
         }
     }
