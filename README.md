@@ -20,9 +20,9 @@ If the player with full netherite gear dies, they lose.
 
 ## Server Admin List
 
-1. Pinont_ **(Server Owner)** - __*Plugin Developer, Builder*__
-2. RichterYT **(Server Admin)** - __*Game Developer, Builder*__
-3. ItDragClick **(Server Admin)** - __*Game Developer, Plugin Developer, Builder*__
+1. Pinont_ **(Server Owner)** - __*Plugin Developer, Game Developer (Nether Stack)*__
+2. RichterYT **(Server Admin)** - __*Game Developer (Warden Chase), Builder*__
+3. ItDragClick **(Server Admin)** - __*Plugin Developer, Builder*__
 
 # Commands
 
