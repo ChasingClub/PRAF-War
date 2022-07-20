@@ -32,7 +32,7 @@ basic kit command (permission is not include yet)
 
 /kit [playerTarget] [kitName]
 
-![kit](https://github.com/NetheriteGame/Netherite-Game/blob/main/asset/Preview/Kit%20Command%20Overview.gif)
+![kit](https://github.com/NetheriteGame/Netherite-Game/blob/main/asset/Preview/Kit_Overview.gif)
 
 
 ### IDE
