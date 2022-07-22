@@ -2,22 +2,20 @@ package pinont.server.minigame;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import pinont.server.minigame.command.*;
-import pinont.server.minigame.commandTabComplete.*;
-import pinont.server.minigame.events.*;
+import pinont.server.minigame.command.kits;
+import pinont.server.minigame.command.spawn;
+import pinont.server.minigame.commandTabComplete.kitsTabable;
+import pinont.server.minigame.events.canceldrops;
+import pinont.server.minigame.events.dia_to_netherite;
+import pinont.server.minigame.events.joinEvent;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Minigame extends JavaPlugin implements Listener {
+public class Minigame extends JavaPlugin {
     public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
 
     public HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
@@ -25,7 +23,6 @@ public class Minigame extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-
 
         // Config
         getConfig().options().copyDefaults(true);
@@ -42,8 +39,10 @@ public class Minigame extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
+
         // start output
         System.out.println(Plname + "Minigames Been Loaded!");
+
     }
 
 
