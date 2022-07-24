@@ -9,19 +9,24 @@ import pinont.server.minigame.command.kits;
 import pinont.server.minigame.command.spawn;
 import pinont.server.minigame.commandTabComplete.PermsList;
 import pinont.server.minigame.commandTabComplete.kitsTabable;
-import pinont.server.minigame.events.blindness;
-import pinont.server.minigame.events.canceldrops;
-import pinont.server.minigame.events.dia_to_netherite;
-import pinont.server.minigame.events.joinEvent;
-
+import pinont.server.minigame.events.*;
 import java.util.HashMap;
 import java.util.UUID;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
 
 public class Minigame extends JavaPlugin {
     public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
 
     public HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
     public Minigame plugin;
+
 
     @Override
     public void onEnable() {
@@ -44,12 +49,12 @@ public class Minigame extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
         getServer().getPluginManager().registerEvents(new blindness(), this);
+        getServer().getPluginManager().registerEvents(new speed(), this);
 
         // start output
         System.out.println(Plname + "Minigames Been Loaded!");
 
     }
-
 
 //    public void setupPermission(Player p) {
 //        PermissionAttachment attachment = p.addAttachment(this);

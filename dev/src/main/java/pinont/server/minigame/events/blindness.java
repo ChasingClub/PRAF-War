@@ -1,25 +1,21 @@
 package pinont.server.minigame.events;
 
-import com.destroystokyo.paper.event.player.PlayerJumpEvent;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 
 public class blindness implements Listener {
 
     @EventHandler
-    public void onPlayerJump(PlayerJumpEvent e) {
-        Player player = e.getPlayer();
-        player.sendMessage("Jump!");
-        if (player.isJumping()) {
-            player.setWalkSpeed(0.5F);
-            player.sendMessage("Bhop");
-            else(!player.isSprinting()) {
-                player.sendMessage("run!");
-                player.setWalkSpeed(0.2F);
+        public void onPlayerMove (PlayerMoveEvent e){
+            Location from = e.getFrom();
+            Location to = e.getTo();
+            Player player = e.getPlayer();
+            if (from.getBlockY() < to.getBlockY() && !player.isSwimming() && !player.isFlying() && player.isSprinting()) {
+                player.sendMessage("B-hopping...");
+                player.setWalkSpeed(0.5f);
             }
         }
-
-//        player.sendMessage("you just jumped");
-    }
 }
