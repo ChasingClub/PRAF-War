@@ -1,6 +1,7 @@
 package pinont.server.minigame.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -13,6 +14,7 @@ public class joinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+            p.setGameMode(GameMode.SURVIVAL);
             World SessionWorld = Bukkit.getServer().getWorld("world");
             Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
             p.teleport(SessionWorldSpawn);

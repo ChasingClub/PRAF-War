@@ -1,20 +1,26 @@
 package pinont.server.minigame.events;
 
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.scheduler.BukkitScheduler;
 
+import java.util.Map;
 import java.util.Objects;
+
+import static org.bukkit.Bukkit.getServer;
+import static pinont.server.minigame.Minigame.Plname;
 
 public class dia_to_netherite implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
+        Player killer = target.getPlayer();
         ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
         ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
         ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
@@ -45,7 +51,23 @@ public class dia_to_netherite implements Listener {
                     }
                 }
             } else if (target.getInventory().contains(Material.NETHERITE_AXE) && target.getInventory().contains(Material.SHIELD)) {
-                target.getInventory().setItemInOffHand(totem);
+                target.setGameMode(GameMode.SPECTATOR);
+                target.sendMessage(Plname + "Nice Try! you has been defeated by " + killer.getName());
+                killer.setGameMode(GameMode.SPECTATOR);
+                target.sendMessage(Plname + "GG! you have defeated " + target.getName());
+                target.getInventory().clear();
+                killer.getInventory().clear();
+                BukkitScheduler scheduler = getServer().getScheduler();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                World SessionWorld = getServer().getWorld("world");
+                Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
+                target.teleport(SessionWorldSpawn);
+
             } else {
                 return;
             }
