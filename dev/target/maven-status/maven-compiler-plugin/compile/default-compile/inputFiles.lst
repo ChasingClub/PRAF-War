@@ -3,5 +3,7 @@ D:\PVP server\dev\src\main\java\pinont\server\minigame\commandTabComplete\kitsTa
 D:\PVP server\dev\src\main\java\pinont\server\minigame\events\joinEvent.java
 D:\PVP server\dev\src\main\java\pinont\server\minigame\command\kits.java
 D:\PVP server\dev\src\main\java\pinont\server\minigame\command\spawn.java
+D:\PVP server\dev\src\main\java\pinont\server\minigame\commandTabComplete\PermsList.java
+D:\PVP server\dev\src\main\java\pinont\server\minigame\command\givePermission.java
 D:\PVP server\dev\src\main\java\pinont\server\minigame\events\canceldrops.java
 D:\PVP server\dev\src\main\java\pinont\server\minigame\Minigame.java
