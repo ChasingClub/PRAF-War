@@ -9,6 +9,7 @@ import pinont.server.minigame.command.kits;
 import pinont.server.minigame.command.spawn;
 import pinont.server.minigame.commandTabComplete.PermsList;
 import pinont.server.minigame.commandTabComplete.kitsTabable;
+import pinont.server.minigame.events.blindness;
 import pinont.server.minigame.events.canceldrops;
 import pinont.server.minigame.events.dia_to_netherite;
 import pinont.server.minigame.events.joinEvent;
@@ -42,6 +43,7 @@ public class Minigame extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
+        getServer().getPluginManager().registerEvents(new blindness(), this);
 
         // start output
         System.out.println(Plname + "Minigames Been Loaded!");

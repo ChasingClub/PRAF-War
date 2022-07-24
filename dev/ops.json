@@ -1,5 +1,11 @@
 [
   {
+    "uuid": "0ab56496-71f6-4205-8e16-ec21dd7bfd5e",
+    "name": "NotAGodBridger",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
     "uuid": "5228ca13-f006-414b-b5f9-1c3752531499",
     "name": "RichterYT",
     "level": 4,
