@@ -11,12 +11,12 @@ public class blindness implements Listener {
     public void onPlayerJump(PlayerJumpEvent e) {
         Player player = e.getPlayer();
         player.sendMessage("Jump!");
-        if (player.isSprinting() && player.isJumping()) {
+        if (player.isJumping()) {
             player.setWalkSpeed(0.5F);
             player.sendMessage("Bhop");
-            if(!player.isSprinting()) {
+            else(!player.isSprinting()) {
                 player.sendMessage("run!");
-                player.setWalkSpeed(0.25F);
+                player.setWalkSpeed(0.2F);
             }
         }
 

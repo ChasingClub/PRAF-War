@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dev/Minigame.iml" filepath="$PROJECT_DIR$/dev/Minigame.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/PVP server.iml" filepath="$PROJECT_DIR$/.idea/PVP server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dev/src/dev.iml" filepath="$PROJECT_DIR$/dev/src/dev.iml" />
     </modules>
   </component>
 </project>
