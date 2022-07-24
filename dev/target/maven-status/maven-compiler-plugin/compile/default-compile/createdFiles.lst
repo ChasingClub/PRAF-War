@@ -1,0 +1,10 @@
+pinont\server\minigame\command\kits.class
+pinont\server\minigame\command\spawn.class
+pinont\server\minigame\events\blindness.class
+pinont\server\minigame\events\joinEvent.class
+pinont\server\minigame\Minigame.class
+pinont\server\minigame\commandTabComplete\PermsList.class
+pinont\server\minigame\commandTabComplete\kitsTabable.class
+pinont\server\minigame\events\canceldrops.class
+pinont\server\minigame\events\dia_to_netherite.class
+pinont\server\minigame\command\givePermission.class
