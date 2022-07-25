@@ -18,6 +18,8 @@ public class joinEvent implements Listener {
             World SessionWorld = Bukkit.getServer().getWorld("world");
             Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
             p.teleport(SessionWorldSpawn);
+            p.setWalkSpeed(0.2F); // default walk speed is 2F
+            p.sendMessage("Walking speed set!");
     }
 
 }

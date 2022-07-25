@@ -17,6 +17,7 @@ import static pinont.server.minigame.Minigame.Plname;
 
 public class dia_to_netherite implements Listener {
 
+
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
@@ -67,6 +68,7 @@ public class dia_to_netherite implements Listener {
                 World SessionWorld = getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 target.teleport(SessionWorldSpawn);
+                target.sendMessage("Send Back to spawn");
 
             } else {
                 return;
