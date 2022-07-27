@@ -1,18 +1,22 @@
 package pinont.server.minigame.events;
 
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+
+import static pinont.server.minigame.Minigame.Plname;
 
 public class canceldrops implements Listener {
 
     @EventHandler
     public void onPlayerDrops(PlayerDropItemEvent event) {
-        if((event.getPlayer().getWorld().getName()).equals("Netherite_game")) {
-            event.setCancelled(true); // cancel player drop event
-        } else if((event.getPlayer().getWorld().getName()).equals("world")) {
-            event.setCancelled(true); // cancel player drop event
+        Player p = event.getPlayer();
+        if (p.getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+            p.sendMessage(Plname + ChatColor.RED + "You can't drop item.");
         }
     }
-
 }

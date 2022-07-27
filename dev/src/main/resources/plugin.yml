@@ -1,4 +1,4 @@
-name: Minigame
+name: 'CustomPlugin'
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19

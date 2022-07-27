@@ -2,12 +2,14 @@ package pinont.server.minigame.command;
 
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pinont.server.minigame.Minigame;
 
 import static pinont.server.minigame.Minigame.Plname;
 
@@ -19,7 +21,7 @@ public class spawn implements CommandExecutor {
             if (sender instanceof Player) {
                 World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
-                p.sendMessage(Plname + "Woosh! you've been back to Server hub");
+                p.sendMessage(Plname + "You have been teleported to spawn.");
                 p.teleport(SessionWorldSpawn);
             }
         } else {
