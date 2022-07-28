@@ -25,7 +25,7 @@ settings:
   restart-script: ./start.sh
   log-villager-deaths: true
   log-named-deaths: true
-  bungeecord: false
+  bungeecord: true
   attribute:
     maxHealth:
       max: 2048
@@ -150,7 +150,7 @@ advancements:
   disabled:
   - minecraft:story/disabled
 commands:
-  log: true
+  log: false
   tab-complete: 0
   send-namespaced: true
   spam-exclusions:

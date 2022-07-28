@@ -141,13 +141,13 @@ public class kits implements CommandExecutor {
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else {
-                        p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
+                        p.sendMessage(Plname + "You need to provide the name of the kit\n/getkit <Name> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
                     }
                 } else {
-                    p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
+                    p.sendMessage(Plname + "You need to provide the name of the kit\n/getkit <Name> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
                 }
             } else {
-                System.out.println("You need to be player to sent the command");
+                sender.sendMessage("You need to be player to sent the command");
             }
         }
         return true;

@@ -10,7 +10,8 @@ groups:
   #Default group. DO NOT REMOVE!
   everyone:
     f3names:
-      - "Welcome to Netherite games"
+      - "NetheriteGames"
+      - "Server TPS: %server_tps_1%"
     #Shuffle that list before displaying?
     shuffle: false
     #Refresh rate in ticks (1 second = 20 ticks)
@@ -29,7 +30,7 @@ bungeecord-as-primary: false
 coloredConsole: true
 
 #Makes request to spiget.org, to check if new version available
-check-for-updates: true
+check-for-updates: false
 
 #Auto update for the plugin. Ignored if check-for-updates is set to false
-auto-update: true
+auto-update: false

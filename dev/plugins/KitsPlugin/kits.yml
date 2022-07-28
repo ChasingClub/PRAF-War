@@ -1,0 +1,178 @@
+Kits:
+  pvp:
+    slot: 1
+    display_item: IRON_SWORD
+    display_name: '&bNormal &ePvP &aKit'
+    display_lore:
+    - '&7This is a description of the kit.'
+    - '&7You can add multiples &alines&7.'
+    cooldown: 3600
+    permission: playerkits.kit.pvp
+    noPermissionsItem:
+      display_item: BARRIER
+      display_name: '&6&lpvp &aKit'
+      display_lore:
+      - '&cYou don''t have permissions to claim'
+      - '&cthis kit.'
+    page: 1
+    auto_armor: true
+    Items:
+      '1':
+        nbt:
+        - Unbreakable;true;boolean
+        id: DIAMOND_SWORD
+        amount: '1'
+        durability: '0'
+        enchants:
+        - DAMAGE_ALL;2
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 0
+      '2':
+        nbt:
+        - Unbreakable;true;boolean
+        id: DIAMOND_AXE
+        amount: '1'
+        durability: '0'
+        enchants:
+        - DAMAGE_ALL;1
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 1
+      '3':
+        nbt:
+        - Unbreakable;true;boolean
+        - Charged;false;boolean
+        id: CROSSBOW
+        amount: '1'
+        durability: '0'
+        enchants:
+        - PIERCING;4
+        - QUICK_CHARGE;1
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 2
+      '4':
+        nbt:
+        - Unbreakable;true;boolean
+        id: BOW
+        amount: '1'
+        durability: '0'
+        enchants:
+        - ARROW_DAMAGE;1
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 3
+      '5':
+        id: COOKED_BEEF
+        amount: '64'
+        durability: '0'
+        preview_slot: 4
+      '6':
+        id: GOLDEN_APPLE
+        amount: '4'
+        durability: '0'
+        preview_slot: 5
+      '7':
+        id: ARROW
+        amount: '64'
+        durability: '0'
+        preview_slot: 9
+      '8':
+        nbt:
+        - Unbreakable;true;boolean
+        id: IRON_HELMET
+        amount: '1'
+        durability: '0'
+        enchants:
+        - PROTECTION_ENVIRONMENTAL;2
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 36
+      '9':
+        nbt:
+        - Unbreakable;true;boolean
+        id: IRON_CHESTPLATE
+        amount: '1'
+        durability: '0'
+        enchants:
+        - PROTECTION_ENVIRONMENTAL;2
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 37
+      '10':
+        nbt:
+        - Unbreakable;true;boolean
+        id: IRON_LEGGINGS
+        amount: '1'
+        durability: '0'
+        enchants:
+        - PROTECTION_ENVIRONMENTAL;2
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 38
+      '11':
+        nbt:
+        - Unbreakable;true;boolean
+        id: IRON_BOOTS
+        amount: '1'
+        durability: '0'
+        enchants:
+        - PROTECTION_ENVIRONMENTAL;2
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 39
+      '12':
+        offhand: true
+        nbt:
+        - Unbreakable;true;boolean
+        id: SHIELD
+        amount: '1'
+        durability: '0'
+        hide-flags:
+        - HIDE_ENCHANTS
+        - HIDE_UNBREAKABLE
+        unbreakable: 'true'
+        preview_slot: 40
+  Hook:
+    Items:
+      '1':
+        nbt:
+        - PublicBukkitValues;{"grapplinghook:airhook":0,"grapplinghook:falldamage":0,"grapplinghook:linebreak":1,"grapplinghook:recipe":6,"grapplinghook:slowfall":1,"grapplinghook:stickyhook":1,"grapplinghook:timebetweengrapples":0,"grapplinghook:uses":100000,"grapplinghook:velocitypull":1.0d,"grapplinghook:velocitythrow":1.0d};compound
+        id: FISHING_ROD
+        amount: '1'
+        durability: '0'
+        name: '&6Grappling Hook'
+        lore:
+        - '&7Right Click to use.'
+        unbreakable: 'false'
+    slot: 2
+    display_item: FISHING_ROD
+    display_name: '&6&lHook &aKit'
+    display_lore:
+    - '&7100k Times Hook'
+    cooldown: 3600
+    permission: playerkits.kit.Hook
+    noPermissionsItem:
+      display_item: BARRIER
+      display_name: '&6&lHook &aKit'
+      display_lore:
+      - '&cYou don''t have permissions to claim'
+      - '&cthis kit.'
+    display_item_glowing: true

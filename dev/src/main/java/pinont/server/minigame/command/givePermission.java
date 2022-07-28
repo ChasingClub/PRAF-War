@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class givePermission implements CommandExecutor {
 
-    HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -24,11 +24,11 @@ public class givePermission implements CommandExecutor {
             if (args.length > 2) {
                 Player target = Bukkit.getPlayer(args[0]);
                 PermissionAttachment attachment = sender.addAttachment(new Minigame());
-                this.playerPermission.put(p.getUniqueId(), attachment);
+                Minigame.playerPermission.put(p.getUniqueId(), attachment);
                 if (args[2].equals("give")) {
                     attachment.setPermission("ranks." + args[3], true);
                 } else if (args[2].equals("remove")) {
-                    playerPermission.remove("ranks." + args[3]);
+                    Minigame.playerPermission.remove("ranks." + args[3]);
                 }
 //            String permissions : this.getConfig().getStringList("Groups." + groups + ".permissions";
             } else {

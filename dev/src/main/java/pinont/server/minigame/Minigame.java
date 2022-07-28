@@ -2,6 +2,11 @@ package pinont.server.minigame;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +18,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import pinont.server.minigame.events.ListenerQuit;
 import pinont.server.minigame.command.givePermission;
 import pinont.server.minigame.command.kits;
 import pinont.server.minigame.command.spawn;
@@ -22,36 +26,44 @@ import pinont.server.minigame.commandTabComplete.kitsTabable;
 import pinont.server.minigame.events.*;
 
 import java.awt.*;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class Minigame extends JavaPlugin implements Listener {
-    public static String webhookURL = "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy";
+public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
     public static Logger logger;
 
-    public HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
     public static ArrayList<String> antilog = new ArrayList<String>();
     public static HashMap<String, Integer> combatList;
+    public static HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
     public static ArrayList<String> ingame = new ArrayList<String>();
+    public FileConfiguration config = this.getConfig();
+    public String webhookURL = config.getString("DiscordWebhookURL");
+    public String Webhook = config.getString("Webhook");
     public Minigame plugin;
+
 
     @Override
     public void onEnable() {
-
         // Config
-        getConfig().options().copyDefaults(true);
-        saveConfig();
+        File file = new File(getDataFolder() + File.separator + "config.yml"); //This will get the config file
+
+        if (!file.exists()){ //This will check if the file exist
+            getConfig().options().copyDefaults(true); //function to check the important settings
+            saveConfig(); //saves the config
+            reloadConfig(); //reloads the config
+        }
 
         // register Command
         getCommand("spawn").setExecutor(new spawn());
-        getCommand("kit").setExecutor(new kits());
+        getCommand("getkit").setExecutor(new kits());
         getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
-        getCommand("kit").setTabCompleter(new kitsTabable());
+        getCommand("getkit").setTabCompleter(new kitsTabable());
         getCommand("perm").setTabCompleter(new PermsList());
 
         // register Event
@@ -61,20 +73,22 @@ public class Minigame extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new Bhopping(), this);
 
         // start output
-        System.out.println(Plname + "Minigames Been Loaded!");
+        Bukkit.getLogger().info(Plname + "Minigames Been Loaded!");
 
         // Discord Webhook Started
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setAuthor("-------","","")
-                .setFooter("-------","")
-                .setDescription("Server Started.")
-                .setColor(Color.GREEN)
-        );
-        try {
-            webhook.execute();
-        }catch (java.io.IOException e){
-            getLogger().severe(e.getStackTrace().toString());
+        if (Webhook == "true") {
+            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setAuthor("-------","","")
+                    .setFooter("-------","")
+                    .setDescription("Server Started.")
+                    .setColor(Color.GREEN)
+            );
+            try {
+                webhook.execute();
+            }catch (java.io.IOException e){
+                getLogger().severe(e.getStackTrace().toString());
+            }
         }
 
         // combat thing
@@ -88,6 +102,8 @@ public class Minigame extends JavaPlugin implements Listener {
             }
         }.runTaskTimer(this, 0, 20);
     }
+
+
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event)
     {
@@ -114,18 +130,19 @@ public class Minigame extends JavaPlugin implements Listener {
 
         Player p = e.getPlayer();
         Date date = new Date(System.currentTimeMillis());
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setColor(Color.GREEN)
-                .setDescription("+ **" + p.getName() + "**")
-                .addField("Joined", getTime(), true)
-                .setThumbnail("https://minotar.net/armor/bust/"+ p.getName() +"/4096.png")
-        );
-        try {
-            webhook.execute();
-        }
-        catch(java.io.IOException event) {
-            getLogger().severe(event.getStackTrace().toString());
+        if (Webhook == "true") {
+            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setColor(Color.GREEN)
+                    .setDescription("+ **" + p.getName() + "**")
+                    .addField("Joined", getTime(), true)
+                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
+            );
+            try {
+                webhook.execute();
+            } catch (java.io.IOException event) {
+                getLogger().severe(event.getStackTrace().toString());
+            }
         }
     }
     @EventHandler
@@ -133,18 +150,19 @@ public class Minigame extends JavaPlugin implements Listener {
     public void DCleave(PlayerQuitEvent e) {
 
         Player p = e.getPlayer();
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setColor(Color.RED)
-                .setDescription("- **" + p.getName() + "**")
-                .addField("Disconnected", getTime(), true)
-                .setThumbnail("https://minotar.net/armor/bust/"+ p.getName() +"/4096.png")
-        );
-        try {
-            webhook.execute();
-        }
-        catch(java.io.IOException event) {
-            getLogger().severe(event.getStackTrace().toString());
+        if (Webhook == "true") {
+            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setColor(Color.RED)
+                    .setDescription("- **" + p.getName() + "**")
+                    .addField("Disconnected", getTime(), true)
+                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
+            );
+            try {
+                webhook.execute();
+            } catch (java.io.IOException event) {
+                getLogger().severe(event.getStackTrace().toString());
+            }
         }
     }
     @EventHandler
@@ -153,20 +171,21 @@ public class Minigame extends JavaPlugin implements Listener {
         if (Minigame.combatList.containsKey(e.getPlayer().getName())) {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             //////////////////////////////////////////////////////////
-            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-            webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                    .setTitle("Combat Logged!")
-                    .setThumbnail("https://minotar.net/armor/body/"+ p.getName() +"/4096.png")
-                    .addField("Name", p.getName(), true)
-                    .addField("Time", getDate(), true)
-                    .setFooter("------------------------------------------------------------------------------------","")
-                    .setColor(Color.YELLOW)
-            );
-            try {
-                webhook.execute();
-            }
-            catch(java.io.IOException event) {
-                getLogger().severe(event.getStackTrace().toString());
+            if (Webhook == "true") {
+                DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+                webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                        .setTitle("Combat Logged!")
+                        .setThumbnail("https://minotar.net/armor/body/" + p.getName() + "/4096.png")
+                        .addField("Name", p.getName(), true)
+                        .addField("Time", getDate(), true)
+                        .setFooter("------------------------------------------------------------------------------------", "")
+                        .setColor(Color.YELLOW)
+                );
+                try {
+                    webhook.execute();
+                } catch (java.io.IOException event) {
+                    getLogger().severe(event.getStackTrace().toString());
+                }
             }
             //////////////////////////////////////////////////////////
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has combat logged.");
@@ -213,6 +232,7 @@ public class Minigame extends JavaPlugin implements Listener {
             }
         }
     }
+
 
 
 //    public void setupPermission(Player p) {
@@ -267,7 +287,7 @@ public class Minigame extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        System.out.println(Plname + "Shutdown Minigames");
+        Bukkit.getLogger().info(Plname + "Shutdown Minigames");
         // Discord Webhook Started
         DiscordWebhook webhook = new DiscordWebhook(webhookURL);
         webhook.addEmbed(new DiscordWebhook.EmbedObject().setDescription("Server Stopped."));

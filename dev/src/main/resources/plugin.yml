@@ -10,9 +10,9 @@ commands:
     description: go to spawn
     usage: /spawn
 
-  kit:
+  getkit:
     description: kit
-    usage: /kit
+    usage: /getkit
 
   warden:
     description: start warden chase game

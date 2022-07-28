@@ -16,5 +16,11 @@
     "name": "Pinont_",
     "level": 4,
     "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "8a490d62-98bd-4f57-b4a6-e4738b0beb96",
+    "name": "ItDragClick",
+    "level": 4,
+    "bypassesPlayerLimit": false
   }
 ]

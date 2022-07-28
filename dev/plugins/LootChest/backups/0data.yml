@@ -1,0 +1,117 @@
+chests:
+  tier1:
+    chance:
+      '0': 100
+      '1': 5
+      '3': 60
+      '4': 15
+      '7': 40
+      '8': 12
+      '9': 12
+      '11': 10
+      '12': 5
+      '13': 5
+      '15': 100
+      '17': 10
+      '18': 10
+      '19': 12
+      '22': 10
+      '23': 12
+      '25': 5
+      '26': 30
+    fall: true
+    type: CHEST
+    respawn_cmd: true
+    respawn_natural: true
+    take_message: true
+    direction: SOUTH
+    holo: tier1
+    time: 0
+    position:
+      world: warden_chase
+      x: -153.0
+      y: 66.0
+      z: -124.0
+      pitch: 0.0
+      yaw: 0.0
+    lastreset: 1658340039401
+    particle: Disabled
+    randomradius: 0
+    inventory:
+      '0':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: SNOWBALL
+        amount: 3
+      '1':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: CHAINMAIL_BOOTS
+      '3':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: SNOWBALL
+        amount: 2
+      '4':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: WOODEN_SWORD
+      '7':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: SNOWBALL
+        amount: 2
+      '8':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: ARROW
+        amount: 2
+      '9':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: ARROW
+        amount: 2
+      '11':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: LEATHER_CHESTPLATE
+      '12':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: CHAINMAIL_CHESTPLATE
+      '13':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: CHAINMAIL_HELMET
+      '15':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: BOW
+      '17':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: LEATHER_LEGGINGS
+      '18':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: LEATHER_HELMET
+      '19':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: ARROW
+      '22':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: LEATHER_BOOTS
+      '23':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: ARROW
+      '25':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: CHAINMAIL_LEGGINGS
+      '26':
+        ==: org.bukkit.inventory.ItemStack
+        v: 3105
+        type: SNOWBALL
