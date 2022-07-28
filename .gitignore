@@ -9,11 +9,11 @@ dev/world_nether/
 dev/Netherite_game/
 dev/Wardens/
 dev/warden_chase/
-#dev/pom.xml
+dev/pom.xml
 dev/logs/
 dev/MCC/
 dev/config/
-#dev/.idea/
+dev/.idea/
 
 # IntelliJ
 
