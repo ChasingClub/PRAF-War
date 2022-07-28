@@ -1,25 +1,29 @@
 # User-specific stuff
 .idea/
-
-# Minecraft Server
-
-dev/world/
 dev/plugins/
-dev/world_nether/
-dev/Netherite_game/
-dev/Wardens/
-dev/warden_chase/
-dev/pom.xml
 dev/logs/
+dev/world/
+dev/Netherite_Game/
+dev/warden_chase
 dev/MCC/
-dev/config/
-dev/.idea/
+dev/world_nether/
+dev/world_the_end/
+dev/Wardens/
+dev/pom.xml
 
-# IntelliJ
+*.bat
+*.sh
+*.exe
+paper.jar
+server.jar
+dev/config/
 
 *.iml
 *.ipr
 *.iws
+
+# IntelliJ
+
 
 # Compiled class file
 
