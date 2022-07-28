@@ -14,7 +14,7 @@ import static pinont.server.minigame.Minigame.Plname;
 public class kits implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (sender instanceof Player) {
+
             Player p = (Player) sender;
             if (p.hasPermission("ranks.admin")) {
                 if (args.length > 0) {
@@ -146,9 +146,7 @@ public class kits implements CommandExecutor {
                 } else {
                     p.sendMessage(Plname + "You need to provide the name of the kit\n/kit <playerTarget> [" + ChatColor.WHITE + " Netherite " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Diamond " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Gold " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Iron " + ChatColor.YELLOW + "|" + ChatColor.WHITE + " Leather " + ChatColor.AQUA + "]");
                 }
-            } else {
-                System.out.println("You need to be player to sent the command");
-            }
+
         }
         return true;
     }

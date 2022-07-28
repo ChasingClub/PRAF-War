@@ -1,9 +1,9 @@
-name: 'CustomPlugin'
+name: NetheriteGame
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
 authors: [ 'pinont' ]
-description: Minigames for Pinont's Server
+description: Plugins base on NetheriteGames
 
 commands:
   spawn:

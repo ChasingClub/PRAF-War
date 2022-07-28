@@ -13,6 +13,8 @@ import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
+import static pinont.server.minigame.Minigame.webhookUrl;
+
 public class ListenerQuit implements Listener {
 
     public Logger logger;
@@ -23,7 +25,7 @@ public class ListenerQuit implements Listener {
         if (Minigame.combatList.containsKey(e.getPlayer().getName())) {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             //////////////////////////////////////////////////////////
-            DiscordWebhook webhook = new DiscordWebhook(Minigame.webhookURL);
+            DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
             webhook.addEmbed(new DiscordWebhook.EmbedObject()
                     .setAuthor("**Combat Logout**","","")
                     .setDescription("Name : " + p.getName() + "\n" + "Time : " + format)

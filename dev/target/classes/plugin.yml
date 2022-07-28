@@ -1,9 +1,9 @@
-name: Minigame
-version: '1.0.8-SNAPSHOT'
+name: NetheriteGame
+version: '1.0.9-SNAPSHOT'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
 authors: [ 'pinont' ]
-description: Minigames for Pinont's Server
+description: Plugins base on NetheriteGames
 
 commands:
   spawn:

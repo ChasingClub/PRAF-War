@@ -28,9 +28,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class Minigame extends JavaPlugin implements Listener {
-    public static String webhookURL = "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy";
     public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
     public static Logger logger;
+    public static String webhookUrl = "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy"; // fucking DCLeave.java event just needed static method so I can't use config.yml
+
 
     public HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
     public static ArrayList<String> antilog = new ArrayList<String>();
@@ -44,6 +45,7 @@ public class Minigame extends JavaPlugin implements Listener {
         // Config
         getConfig().options().copyDefaults(true);
         saveConfig();
+
 
         // register Command
         getCommand("spawn").setExecutor(new spawn());
@@ -64,7 +66,7 @@ public class Minigame extends JavaPlugin implements Listener {
         System.out.println(Plname + "Minigames Been Loaded!");
 
         // Discord Webhook Started
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
                 .setAuthor("-------","","")
                 .setFooter("-------","")
@@ -114,7 +116,7 @@ public class Minigame extends JavaPlugin implements Listener {
 
         Player p = e.getPlayer();
         Date date = new Date(System.currentTimeMillis());
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
                 .setColor(Color.GREEN)
                 .setDescription("+ **" + p.getName() + "**")
@@ -133,7 +135,7 @@ public class Minigame extends JavaPlugin implements Listener {
     public void DCleave(PlayerQuitEvent e) {
 
         Player p = e.getPlayer();
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
                 .setColor(Color.RED)
                 .setDescription("- **" + p.getName() + "**")
@@ -153,7 +155,7 @@ public class Minigame extends JavaPlugin implements Listener {
         if (Minigame.combatList.containsKey(e.getPlayer().getName())) {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             //////////////////////////////////////////////////////////
-            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+            DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
             webhook.addEmbed(new DiscordWebhook.EmbedObject()
                     .setTitle("Combat Logged!")
                     .setThumbnail("https://minotar.net/armor/body/"+ p.getName() +"/4096.png")
@@ -269,7 +271,7 @@ public class Minigame extends JavaPlugin implements Listener {
     public void onDisable() {
         System.out.println(Plname + "Shutdown Minigames");
         // Discord Webhook Started
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
         webhook.addEmbed(new DiscordWebhook.EmbedObject().setDescription("Server Stopped."));
         try {
             webhook.execute();
