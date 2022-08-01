@@ -1,6 +1,19 @@
 Webhook: true
 DiscordWebhookURL: "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy"
 
+deadmsg:
+  - " was slain by "
+  - " took the L to "
+  - " got rekt by "
+  - " got smacked by "
+  - " got BONK by "
+  - " got rip by "
+  - " took an E by "
+  - " was turned to dust by "
+  - " was turned to ash by "
+  - " was melted by "
+  - " was stomped by "
+
 Groups:
   member:
     permission:

@@ -60,17 +60,19 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         // register Command
         getCommand("spawn").setExecutor(new spawn());
         getCommand("getkit").setExecutor(new kits());
-        getCommand("perm").setExecutor(new givePermission());
+//        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
         getCommand("getkit").setTabCompleter(new kitsTabable());
-        getCommand("perm").setTabCompleter(new PermsList());
+//        getCommand("perm").setTabCompleter(new PermsList());
 
         // register Event
         getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
         getServer().getPluginManager().registerEvents(new Bhopping(), this);
+        getServer().getPluginManager().registerEvents(new Respawn(), this);
+        getServer().getPluginManager().registerEvents(new heal(), this);
 
         // start output
         Bukkit.getLogger().info(Plname + "Minigames Been Loaded!");
@@ -102,7 +104,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             }
         }.runTaskTimer(this, 0, 20);
     }
-
 
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event)
@@ -210,8 +211,11 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public void onKill(PlayerDeathEvent e) {
         Player p = e.getEntity();
         Player killer = p.getKiller();
+        Random r = new Random();
+        List<String> sl = config.getStringList("deadmsg");
+        String s = sl.get(r.nextInt(sl.size()));
         if (killer instanceof Player && p instanceof Player) {
-            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + ChatColor.YELLOW + " was slain by " + ChatColor.DARK_AQUA + killer.getName());
+            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + ChatColor.YELLOW + s + ChatColor.DARK_AQUA + killer.getName());
         }
     }
     @EventHandler

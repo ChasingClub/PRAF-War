@@ -22,7 +22,6 @@ commands:
     description: add player permission
     usage: /perm
 
-
 permissions:
   ranks.admin:
     description: "admin"

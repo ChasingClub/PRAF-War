@@ -25,7 +25,7 @@ settings:
   restart-script: ./start.sh
   log-villager-deaths: true
   log-named-deaths: true
-  bungeecord: true
+  bungeecord: false
   attribute:
     maxHealth:
       max: 2048

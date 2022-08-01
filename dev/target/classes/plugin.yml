@@ -1,0 +1,34 @@
+name: NetheriteGame
+version: '1.0.9-SNAPSHOT'
+main: pinont.server.minigame.Minigame
+api-version: 1.19
+authors: [ 'pinont' ]
+description: Plugins base on NetheriteGames
+
+commands:
+  spawn:
+    description: go to spawn
+    usage: /spawn
+
+  kit:
+    description: kit
+    usage: /kit
+
+  warden:
+    description: start warden chase game
+    usage: /warden
+
+  perm:
+    description: add player permission
+    usage: /perm
+
+
+permissions:
+  ranks.admin:
+    description: "admin"
+    children: [ranks.mod, ranks.jrmod] #idk if it inerhits children from lower children, if so you can remove ranks.jrmod
+  ranks.mod:
+    description: "mod"
+    children: [ranks.jrmod]
+  ranks.jrmod:
+    description: "jrmod"

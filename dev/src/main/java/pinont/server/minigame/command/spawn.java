@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import pinont.server.minigame.Minigame;
 
 import static pinont.server.minigame.Minigame.Plname;
@@ -19,6 +20,11 @@ public class spawn implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (sender instanceof Player) {
+                if (p.getLocation().getWorld().getName().endsWith("world")) {
+                    p.getInventory().clear();
+                    for (PotionEffect effect : p.getActivePotionEffects())
+                        p.removePotionEffect(effect.getType());
+                }
                 World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 p.sendMessage(Plname + "You have been teleported to spawn.");
