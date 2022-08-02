@@ -176,3 +176,30 @@ Kits:
       - '&cYou don''t have permissions to claim'
       - '&cthis kit.'
     display_item_glowing: true
+  admin:
+    Items:
+      '1':
+        id: BOW
+        amount: '1'
+        durability: '0'
+        enchants:
+        - ARROW_DAMAGE;522
+        unbreakable: 'false'
+      '2':
+        id: ARROW
+        amount: '64'
+        durability: '0'
+    slot: 3
+    display_item: IRON_SWORD
+    display_name: '&6&ladmin &aKit'
+    display_lore:
+    - '&7This is a description of the kit.'
+    - '&7You can add multiples &alines&7.'
+    cooldown: 3600
+    permission: playerkits.kit.admin
+    noPermissionsItem:
+      display_item: BARRIER
+      display_name: '&6&ladmin &aKit'
+      display_lore:
+      - '&cYou don''t have permissions to claim'
+      - '&cthis kit.'

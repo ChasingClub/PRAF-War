@@ -10,6 +10,14 @@ commands:
     description: go to spawn
     usage: /spawn
 
+  ping:
+    description: ping
+    usage: /ping
+
+  feed:
+    description: feed player
+    usage: /feed
+
   getkit:
     description: kit
     usage: /getkit

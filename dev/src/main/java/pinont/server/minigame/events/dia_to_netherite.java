@@ -23,14 +23,14 @@ public class dia_to_netherite implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
         Player killer = target.getPlayer();
-        if (Minigame.ingame.contains(target.getName())) {
+        if (Minigame.ingame.contains(target.getName())) { // Newwwww check world to check Arraylist <-----------------------------
             ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
             ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
             ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
             ItemStack armorChest = new ItemStack(Material.NETHERITE_CHESTPLATE);
             ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
             ItemMeta itemMeta = Objects.requireNonNull(target.getInventory().getHelmet()).getItemMeta();
-            if ((target.getWorld().getName()).equals("Netherite_game")) { // if player respawn at Void_World
+//            if ((target.getWorld().getName()).equals("Netherite_game")) { // if player respawn at Void_World
                 if (target.getInventory().getHelmet() != null && (target.getInventory().getHelmet().getType()).equals(Material.DIAMOND_HELMET)) {
                     target.getInventory().setHelmet(armorHead); // repalce target helmet after respawn
                 } else if (target.getInventory().getHelmet() != null && (target.getInventory().getBoots().getType()).equals(Material.DIAMOND_BOOTS)) {
@@ -76,6 +76,5 @@ public class dia_to_netherite implements Listener {
                     return;
                 }
             }
-        }
     }
 }
