@@ -1,4 +1,4 @@
-name: 'CustomPlugin'
+name: 'PRAFWar'
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
@@ -18,17 +18,21 @@ commands:
     description: feed player
     usage: /feed
 
+  heal:
+    description: heal player
+    usage: /heal
+
   getkit:
-    description: kit
+    description: kit command
     usage: /getkit
 
   warden:
     description: start warden chase game
     usage: /warden
 
-  perm:
-    description: add player permission
-    usage: /perm
+  earape:
+    description: earape player
+    usage: /earape
 
 permissions:
   ranks.admin:

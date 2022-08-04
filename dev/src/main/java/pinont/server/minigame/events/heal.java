@@ -12,9 +12,12 @@ public class heal implements Listener {
     public void onKillGetHeal(PlayerDeathEvent e) {
         Player p = e.getEntity();
         Player killer = p.getKiller();
-        if (killer instanceof Player && p instanceof Player) {
+        if (killer instanceof Player && p instanceof Player && killer.getName() != p.getName()) {
+            double rounded = Math.round(killer.getHealth() * 10) / 10;
+            p.sendMessage(killer.getName()+" have "+ChatColor.YELLOW+rounded+ChatColor.RED+"♥"+ChatColor.RESET+" left.");
             killer.setHealth(killer.getMaxHealth());
-            killer.setFoodLevel(21);
+            killer.setFoodLevel(20);
+            killer.setSaturation(20f);
         }
     }
 }

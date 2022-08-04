@@ -1,4 +1,4 @@
-package pinont.server.minigame.events;
+package pinont.server.minigame.utils.machanic;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;

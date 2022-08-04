@@ -1,4 +1,4 @@
-package pinont.server.minigame.events;
+package pinont.server.minigame.utils.machanic;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -23,7 +23,7 @@ public class dia_to_netherite implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
         Player killer = target.getPlayer();
-        if (Minigame.ingame.contains(target.getName())) { // Newwwww check world to check Arraylist <-----------------------------
+        if (Minigame.ingame.contains(target.getName())) { // Newwwww check mapgen to check Arraylist <-----------------------------
             ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
             ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
             ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
@@ -67,7 +67,7 @@ public class dia_to_netherite implements Listener {
                         throw new RuntimeException(e);
                     }
 
-                    World SessionWorld = getServer().getWorld("world");
+                    World SessionWorld = getServer().getWorld("mapgen");
                     Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                     target.teleport(SessionWorldSpawn);
                     target.sendMessage("Send Back to spawn");

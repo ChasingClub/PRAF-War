@@ -1,4 +1,4 @@
-package pinont.server.minigame.commandTabComplete;
+package pinont.server.minigame.utils.commandTablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class kitsTabable implements TabCompleter {
-
+public class feedtable implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         if (args.length == 1) {
@@ -22,18 +21,7 @@ public class kitsTabable implements TabCompleter {
             }
 
             return playerNames;
-        } else if (args.length == 2) {
-            List<String> argruments = new ArrayList<>();
-            argruments.add("Netherite");
-            argruments.add("Diamond");
-            argruments.add("Gold");
-            argruments.add("Iron");
-            argruments.add("Leather");
-            argruments.add("Chainmail");
-
-            return argruments;
         }
         return null;
     }
-
 }

@@ -15,9 +15,9 @@ public class Respawn implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
         Player p = e.getPlayer();
-        if (p.getLocation().getWorld().getName().endsWith("world")) {
+        if (p.getLocation().getWorld().getName().endsWith("mapgen")) {
             Minigame.combatList.put(p.getName(), 0);
-            World SessionWorld = Bukkit.getServer().getWorld("world");
+            World SessionWorld = Bukkit.getServer().getWorld("mapgen");
             Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180.5, 26.5);
             e.setRespawnLocation(SessionWorldSpawn);
             p.getInventory().clear();

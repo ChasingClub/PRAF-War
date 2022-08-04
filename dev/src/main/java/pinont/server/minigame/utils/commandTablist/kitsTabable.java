@@ -1,20 +1,18 @@
-package pinont.server.minigame.commandTabComplete;
+package pinont.server.minigame.utils.commandTablist;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermsList implements TabCompleter {
+public class kitsTabable implements TabCompleter {
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
         if (args.length == 1) {
             ArrayList<String> playerNames = new ArrayList<>();
             Player[] players = new Player[Bukkit.getServer().getOnlinePlayers().size()];
@@ -26,16 +24,16 @@ public class PermsList implements TabCompleter {
             return playerNames;
         } else if (args.length == 2) {
             List<String> argruments = new ArrayList<>();
-            argruments.add("give");
-            argruments.add("remove");
-
-            return argruments;
-        } else if (args.length == 3) {
-            List<String> argruments = new ArrayList<>();
-            argruments.add("admin");
+            argruments.add("Netherite");
+            argruments.add("Diamond");
+            argruments.add("Gold");
+            argruments.add("Iron");
+            argruments.add("Leather");
+            argruments.add("Chainmail");
 
             return argruments;
         }
         return null;
     }
+
 }

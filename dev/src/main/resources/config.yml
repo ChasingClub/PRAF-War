@@ -1,6 +1,6 @@
 Webhook: true
-DiscordWebhookLogURL: "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy"
-DiscordWebhookURL: "https://discord.com/api/webhooks/1004005092241965058/pLvqXp0rDHVvoKfoLZGOQfX3h1Jkc6cIOMYMBxuM__1HLSZMStyY2h_3_QDoSVz2zvlA"
+DiscordWebhookURL: "https://discord.com/api/webhooks/1001889150129152150/L6a_4y0kUKtP_OJ-JO2wnP--1ZBduqdhge4EcgAkZgmF-8bevBC7hUBxF9JVvLQDalYy"
+AntiCheatHook: "https://discord.com/api/webhooks/1004005092241965058/pLvqXp0rDHVvoKfoLZGOQfX3h1Jkc6cIOMYMBxuM__1HLSZMStyY2h_3_QDoSVz2zvlA"
 
 deadmsg:
   - " was slain by "
@@ -14,9 +14,16 @@ deadmsg:
   - " was turned to ash by "
   - " was melted by "
   - " was stomped by "
-  -
 
-Groups:
-  member:
-    permission:
-      - pinont.member
+# Later
+
+#WardenChunks:
+#  chunk1:
+#    x: 0
+#    y: 0
+#    z: 0
+#
+#  chunk2:
+#    x: 0
+#    y: 0
+#    z: 0
