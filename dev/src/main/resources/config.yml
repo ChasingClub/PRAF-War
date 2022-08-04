@@ -13,6 +13,7 @@ deadmsg:
   - " was turned to dust by "
   - " was turned to ash by "
   - " was melted by "
+<<<<<<< HEAD
   - " was stomped by "
 
 # Later
@@ -27,3 +28,6 @@ deadmsg:
 #    x: 0
 #    y: 0
 #    z: 0
+=======
+  - " was stomped by "
+>>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
