@@ -95,6 +95,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new feed(), this);
         getServer().getPluginManager().registerEvents(new ping(), this);
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
+//        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
         // start output
@@ -169,7 +170,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                 }
             } else {
                 // Send command overview
-                sender.sendMessage("/crash <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
+                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
                 return true;
             }
 
@@ -183,8 +184,10 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player){
             Player target = (Player) event.getEntity();
             Player damager = (Player) event.getDamager();
-            combatList.put(target.getName(), 11);
-            combatList.put(damager.getName(), 11);
+            if((damager.getHealth() < 20)) {
+                combatList.put(target.getName(), 11);
+                combatList.put(damager.getName(), 11);
+            }
         }
     }
     public String getDate(){
