@@ -125,7 +125,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             public void run(){
                 onDelay();
                 onactionbar();
-//                tablist();
             }
         }.runTaskTimer(this, 0, 20);
     }
@@ -170,7 +169,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                 }
             } else {
                 // Send command overview
-                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
+                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Earape player you want.");
                 return true;
             }
 
