@@ -5,16 +5,14 @@
 */
 
 job("Test-CommandExcuting") {
-    container(displayName = "Test-CommandExcuting", image = "gradlew") { 
-		shellScript { 
-        	
-            mountDir = "/mnt/mySpace"
-        	workDir = "/mnt/mySpace/work"
-        	user = "root"
-            entrypoint("/bin/sh")
-            args("-c", "echo \"Project content\" && ls ./ ")
-    }
-            
+    container(image = "openjdk:17") {
+        kotlinScript { api ->
+            if (api.gitBranch() == "refs/heads/master"){
+                println("Running in master branch")
+            }
+            else {
+                println("Running in custom branch")
+            }
         }
     }
 }
