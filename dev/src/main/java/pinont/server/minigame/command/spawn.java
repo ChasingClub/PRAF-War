@@ -18,17 +18,13 @@ public class spawn implements CommandExecutor {
             Player p = (Player) sender;
             if (sender instanceof Player) {
                 if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-<<<<<<< HEAD
-                    if (p.getLocation().getWorld().getName().endsWith("mapgen")) {
-=======
                     if (p.getLocation().getWorld().getName().endsWith("world")) {
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
                         p.getInventory().clear();
                         for (PotionEffect effect : p.getActivePotionEffects())
                             p.removePotionEffect(effect.getType());
                     }
                 }
-                World SessionWorld = Bukkit.getServer().getWorld("mapgen");
+                World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 p.teleport(SessionWorldSpawn);
                 if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {

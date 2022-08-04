@@ -1,10 +1,5 @@
 package pinont.server.minigame;
 
-<<<<<<< HEAD
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandExecutor;
-=======
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -12,33 +7,32 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 import pinont.server.minigame.command.*;
-<<<<<<< HEAD
-=======
 import pinont.server.minigame.commandTabComplete.kitsTabable;
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 import pinont.server.minigame.events.*;
-import pinont.server.minigame.utils.commandTablist.kitsTabable;
-import pinont.server.minigame.utils.machanic.*;
 
 
 import java.awt.*;
 import java.awt.Color;
 import java.io.File;
-<<<<<<< HEAD
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TimeZone;
-
-public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
-    public static String Plname = ChatColor.AQUA + "[" + ChatColor.RED + "P" + ChatColor.BLUE + "R" + ChatColor.GREEN + "A" + ChatColor.DARK_BLUE + "F" + ChatColor.AQUA + "] "+ChatColor.GRAY;
-=======
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -53,20 +47,14 @@ import static org.bukkit.Bukkit.getServer;
 
 public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] "+ChatColor.GRAY;
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
     public static HashMap<String, Integer> combatList;
     public static ArrayList<String> ingame = new ArrayList<String>();
     public FileConfiguration config = this.getConfig();
     public String webhookURL = config.getString("DiscordWebhookURL");
     public String webhookURLAC = config.getString("AntiCheatHook");
     public String Webhook = config.getString("Webhook");
-    public static Minigame plugin;
+    public Minigame plugin;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
     public void msgconsole(String message){
         Bukkit.getConsoleSender().sendMessage(message);
     }
@@ -85,20 +73,15 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
 
         // register Command
         getCommand("spawn").setExecutor(new spawn());
-        getCommand("getkit").setExecutor(new getkits());
+        getCommand("getkit").setExecutor(new kits());
         getCommand("feed").setExecutor(new feed());
         getCommand("ping").setExecutor(new ping());
         getCommand("heal").setExecutor(new health());
-<<<<<<< HEAD
-        getCommand("earape").setExecutor(new earape());
-=======
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
         getCommand("getkit").setTabCompleter(new kitsTabable());
         getCommand("feed").setTabCompleter(new kitsTabable());
-
 //        getCommand("perm").setTabCompleter(new PermsList());
 
         // register Event
@@ -112,23 +95,11 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new feed(), this);
         getServer().getPluginManager().registerEvents(new ping(), this);
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
-<<<<<<< HEAD
-        getServer().getPluginManager().registerEvents(new CancelCommand(), this);
-        getServer().getPluginManager().registerEvents(new CombatLog(), this);
-        getServer().getPluginManager().registerEvents(new RecivedDamage(), this);
-        getServer().getPluginManager().registerEvents(new combatactionbar(), this);
-        getServer().getPluginManager().registerEvents(new PlayerKilled(), this);
-=======
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
         // start output
-<<<<<<< HEAD
-        msgconsole(Plname + "PRAF Been Loaded!");
-=======
         msgconsole(Plname + "CustomPlugin Been Loaded!");
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 
         // Discord Webhook Started
         if (Webhook == "true") {
@@ -144,8 +115,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                 getLogger().severe(e.getStackTrace().toString());
             }
         }
-<<<<<<< HEAD
-=======
 
         // combat thing
         this.combatList = new HashMap<>();
@@ -156,9 +125,9 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             public void run(){
                 onDelay();
                 onactionbar();
+//                tablist();
             }
         }.runTaskTimer(this, 0, 20);
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
     }
     public void particles(Player p) {
         Location loc = p.getLocation();
@@ -201,7 +170,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                 }
             } else {
                 // Send command overview
-                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Earape player you want.");
+                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
                 return true;
             }
 
@@ -209,10 +178,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         return true;
     }
 
-<<<<<<< HEAD
-
-    public static String getDate() {
-=======
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event)
     {
@@ -226,22 +191,15 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         }
     }
     public String getDate(){
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return sdf.format(cal.getTime());
     }
-<<<<<<< HEAD
-    public static String getTime() {
-=======
     public String getTime(){
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(cal.getTime());
     }
-<<<<<<< HEAD
-=======
     @EventHandler
     //JOIN SERVER
     public void DCjoin(PlayerJoinEvent event) {
@@ -373,7 +331,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     }
 
 
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 
 //    public void setupPermission(Player p) {
 //        PermissionAttachment attachment = p.addAttachment(this);
@@ -441,8 +398,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             getLogger().severe(e.getStackTrace().toString());
         }
     }
-<<<<<<< HEAD
-=======
     Class<?> CPClass;
 
     String serverName  = getServer().getClass().getPackage().getName(),
@@ -508,5 +463,4 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             }
         }
     }
->>>>>>> 8fa805bcde8725f5a1ba696ac001f35c9ef6f392
 }

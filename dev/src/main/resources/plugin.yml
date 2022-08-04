@@ -1,4 +1,4 @@
-name: 'PRAFWar'
+name: 'CustomPlugin'
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
@@ -23,7 +23,7 @@ commands:
     usage: /heal
 
   getkit:
-    description: kit command
+    description: kit
     usage: /getkit
 
   warden:
