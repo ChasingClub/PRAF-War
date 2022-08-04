@@ -18,6 +18,10 @@ commands:
     description: feed player
     usage: /feed
 
+  heal:
+    description: heal player
+    usage: /heal
+
   getkit:
     description: kit
     usage: /getkit
@@ -26,9 +30,9 @@ commands:
     description: start warden chase game
     usage: /warden
 
-  perm:
-    description: add player permission
-    usage: /perm
+  earape:
+    description: earape player
+    usage: /earape
 
 permissions:
   ranks.admin:

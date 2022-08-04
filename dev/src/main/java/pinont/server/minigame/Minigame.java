@@ -2,13 +2,11 @@ package pinont.server.minigame;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -28,38 +26,42 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import pinont.server.minigame.command.*;
-import pinont.server.minigame.commandTabComplete.PermsList;
 import pinont.server.minigame.commandTabComplete.kitsTabable;
 import pinont.server.minigame.events.*;
 
+
 import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import static org.bukkit.Bukkit.getServer;
 
 public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
-    public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] ";
-    public static Logger logger;
-
-    public static ArrayList<String> antilog = new ArrayList<String>();
+    public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] "+ChatColor.GRAY;
     public static HashMap<String, Integer> combatList;
-    public static HashMap<UUID, PermissionAttachment> playerPermission = new HashMap<>();
     public static ArrayList<String> ingame = new ArrayList<String>();
     public FileConfiguration config = this.getConfig();
-    public String webhookURL = config.getString("DiscordWebhookLogURL");
-    public String webhookURLAC = config.getString("DiscordWebhookURL");
+    public String webhookURL = config.getString("DiscordWebhookURL");
+    public String webhookURLAC = config.getString("AntiCheatHook");
     public String Webhook = config.getString("Webhook");
     public Minigame plugin;
 
+    public void msgconsole(String message){
+        Bukkit.getConsoleSender().sendMessage(message);
+    }
     @Override
     public void onEnable() {
+        // Set Normal TimeZone
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Bangkok"));
         // Config
         File file = new File(getDataFolder() + File.separator + "config.yml"); //This will get the config file
 
@@ -74,6 +76,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("getkit").setExecutor(new kits());
         getCommand("feed").setExecutor(new feed());
         getCommand("ping").setExecutor(new ping());
+        getCommand("heal").setExecutor(new health());
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -91,10 +94,11 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new LeaveClear(), this);
         getServer().getPluginManager().registerEvents(new feed(), this);
         getServer().getPluginManager().registerEvents(new ping(), this);
-        this.getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new JoinMessage(), this);
+//        this.getServer().getPluginManager().registerEvents(this, this);
 
         // start output
-        Bukkit.getLogger().info(Plname + "Minigames Been Loaded!");
+        msgconsole(Plname + "CustomPlugin Been Loaded!");
 
         // Discord Webhook Started
         if (Webhook == "true") {
@@ -120,9 +124,57 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             public void run(){
                 onDelay();
                 onactionbar();
-                tablist();
+//                tablist();
             }
         }.runTaskTimer(this, 0, 20);
+    }
+    public void particles(Player p) {
+        Location loc = p.getLocation();
+        for (int i=0; i<1000;i++) {
+            p.playSound(loc , Sound.UI_TOAST_CHALLENGE_COMPLETE, 1000000000, 0);
+        }
+    }
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("earape")) {
+            // Check for arguments
+            if (args.length == 0) {
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage("Player Not Found");
+                    return true;
+                }else{
+                    if (!(sender.hasPermission("rank.admin"))) {
+                        sender.sendMessage(ChatColor.RED+"You Don't have permission to do that!");
+                        return true;
+                    }
+                    if (sender instanceof Player) {
+                        sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Earape player you want.");
+                        return true;
+                    }
+                }
+            } else if (args.length == 1) {
+                if (sender.hasPermission("rank.admin")) {
+                    Player argplayer = getServer().getPlayer(args[0]);
+                    if (argplayer == null) {
+                        sender.sendMessage("Player " + ChatColor.GRAY + args[0] + ChatColor.RESET + " could not be found");
+                        return true;
+                    }
+                    // Send command overview
+                    particles(argplayer);
+                    sender.sendMessage(ChatColor.GOLD + argplayer.getName() + " has been earaped.");
+                    return true;
+                } else {
+                    sender.sendMessage(ChatColor.RED+"You Don't have permission to do that!");
+                    return true;
+                }
+            } else {
+                // Send command overview
+                sender.sendMessage("/crash <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
+                return true;
+            }
+
+        }
+        return true;
     }
 
     @EventHandler
@@ -136,21 +188,20 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         }
     }
     public String getDate(){
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+7"));
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return sdf.format(cal.getTime());
     }
     public String getTime(){
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+7"));
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(cal.getTime());
     }
     @EventHandler
     //JOIN SERVER
-    public void DCjoin(PlayerJoinEvent e) {
+    public void DCjoin(PlayerJoinEvent event) {
 
-        Player p = e.getPlayer();
-        Date date = new Date(System.currentTimeMillis());
+        Player p = event.getPlayer();
         if (Webhook == "true") {
             DiscordWebhook webhook = new DiscordWebhook(webhookURL);
             webhook.addEmbed(new DiscordWebhook.EmbedObject()
@@ -161,8 +212,8 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             );
             try {
                 webhook.execute();
-            } catch (java.io.IOException event) {
-                getLogger().severe(event.getStackTrace().toString());
+            }catch (java.io.IOException e){
+                getLogger().severe(e.getStackTrace().toString());
             }
         }
     }
@@ -187,14 +238,16 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         }
     }
     @EventHandler
-    public void antiLog(PlayerQuitEvent e) {
+    public void ACLogged(PlayerQuitEvent e) {
         Player p = e.getPlayer();
         if (Minigame.combatList.containsKey(e.getPlayer().getName())) {
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has combat logged.");
+            p.damage(21.0D);
+            Minigame.combatList.put(p.getName(), -1);
             //////////////////////////////////////////////////////////
             if (Webhook == "true") {
-                DiscordWebhook webhook = new DiscordWebhook(webhookURLAC);
-                webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                DiscordWebhook webhookAC = new DiscordWebhook(webhookURLAC);
+                webhookAC.addEmbed(new DiscordWebhook.EmbedObject()
                         .setTitle("Combat Logged!")
                         .setThumbnail("https://minotar.net/armor/body/" + p.getName() + "/4096.png")
                         .addField("Name", p.getName(), true)
@@ -203,15 +256,12 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                         .setColor(Color.YELLOW)
                 );
                 try {
-                    webhook.execute();
+                    webhookAC.execute();
                 } catch (java.io.IOException event) {
                     getLogger().severe(event.getStackTrace().toString());
                 }
             }
             //////////////////////////////////////////////////////////
-            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has combat logged.");
-            p.damage(21.0D);
-            Minigame.combatList.put(p.getName(), 0);
         }
     }
     public void onactionbar(){
@@ -331,7 +381,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info(Plname + "Shutdown Minigames");
+        msgconsole(Plname + "Shutdown CustomPlugin");
         // Discord Webhook Started
         DiscordWebhook webhook = new DiscordWebhook(webhookURL);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()
@@ -349,7 +399,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
 
     String serverName  = getServer().getClass().getPackage().getName(),
             serverVersion = serverName.substring(serverName.lastIndexOf(".") + 1, serverName.length());
-    public int getthePing(Player p) {
+    public int getPing(Player p) {
         try {
             CPClass = Class.forName("org.bukkit.craftbukkit." + serverVersion + ".entity.CraftPlayer");
             Object CraftPlayer = CPClass.cast(p);
@@ -390,7 +440,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             Iterator<? extends Player> itTmpPlayers = tmpPlayers.iterator();
             while (itTmpPlayers.hasNext()) {
                 Player tmpPlayer = itTmpPlayers.next();
-                int tmpPing = getthePing(tmpPlayer);
+                int tmpPing = getPing(tmpPlayer);
                 if (!tmpPlayer.getPlayerListName().equals(tmpPlayer.getName())) {
 								/*
 								player.getScoreboard()
