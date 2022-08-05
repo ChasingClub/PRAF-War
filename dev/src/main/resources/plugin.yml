@@ -1,4 +1,4 @@
-name: 'CustomPlugin'
+name: 'PRAFWar'
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19

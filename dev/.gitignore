@@ -1,22 +1,21 @@
 # User-specific stuff
 .idea/
-dev/plugins/
-dev/logs/
-dev/world/
-dev/Netherite_Game/
-dev/warden_chase
-dev/MCC/
-dev/world_nether/
-dev/world_the_end/
-dev/Wardens/
-dev/pom.xml
+plugins/
+logs/
+world/
+Netherite_Game/
+warden_chase
+MCC/
+world_nether/
+world_the_end/
+Wardens/
 
 *.bat
 *.sh
 *.exe
 paper.jar
-server.jar
-dev/config/
+server.jat
+config/
 
 *.iml
 *.ipr

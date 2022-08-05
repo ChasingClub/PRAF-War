@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
@@ -46,7 +47,7 @@ import java.util.logging.Logger;
 import static org.bukkit.Bukkit.getServer;
 
 public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
-    public static String Plname = ChatColor.AQUA + "[" + ChatColor.BLUE + "NET" + ChatColor.LIGHT_PURPLE + "HER" + ChatColor.YELLOW + "IT" + ChatColor.WHITE + "E" + ChatColor.AQUA + "] "+ChatColor.GRAY;
+    public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
     public static ArrayList<String> ingame = new ArrayList<String>();
     public FileConfiguration config = this.getConfig();
@@ -125,7 +126,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             public void run(){
                 onDelay();
                 onactionbar();
-//                tablist();
             }
         }.runTaskTimer(this, 0, 20);
     }
@@ -135,6 +135,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             p.playSound(loc , Sound.UI_TOAST_CHALLENGE_COMPLETE, 1000000000, 0);
         }
     }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("earape")) {
@@ -170,7 +171,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
                 }
             } else {
                 // Send command overview
-                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Crash player you want.");
+                sender.sendMessage("/earape <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Earape player you want.");
                 return true;
             }
 
