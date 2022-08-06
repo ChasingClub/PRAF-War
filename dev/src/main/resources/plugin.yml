@@ -14,6 +14,22 @@ commands:
     description: ping
     usage: /ping
 
+  gms:
+    description: set gamemode 0
+    usage: /gms
+
+  gmc:
+    description: set gamemode 1
+    usage: /gmc
+
+  gma:
+    description: set gamemode 2
+    usage: /gma
+
+  gmsp:
+    description: set gamemode 3
+    usage: /gmsp
+
   feed:
     description: feed player
     usage: /feed

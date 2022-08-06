@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.potion.PotionEffect;
 import pinont.server.minigame.Minigame;
 
 import java.util.HashMap;
@@ -25,6 +26,9 @@ public class joinEvent implements Listener {
             World SessionWorld = Bukkit.getServer().getWorld("world");
             Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
             p.teleport(SessionWorldSpawn);
+            p.getInventory().clear();
+            for (PotionEffect effect : p.getActivePotionEffects())
+                p.removePotionEffect(effect.getType());
             p.setWalkSpeed(0.2F); // default walk speed is 2F
         }
     }
