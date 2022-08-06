@@ -1,27 +1,38 @@
-name: NetheriteGame
-version: '1.0.9-SNAPSHOT'
+name: 'PRAFWar'
+version: '1.0.2-SNAPSHOT'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
 authors: [ 'pinont' ]
-description: Plugins base on NetheriteGames
+description: Minigames for Pinont's Server
 
 commands:
   spawn:
     description: go to spawn
     usage: /spawn
 
-  kit:
+  ping:
+    description: ping
+    usage: /ping
+
+  feed:
+    description: feed player
+    usage: /feed
+
+  heal:
+    description: heal player
+    usage: /heal
+
+  getkit:
     description: kit
-    usage: /kit
+    usage: /getkit
 
   warden:
     description: start warden chase game
     usage: /warden
 
-  perm:
-    description: add player permission
-    usage: /perm
-
+  earape:
+    description: earape player
+    usage: /earape
 
 permissions:
   ranks.admin:
