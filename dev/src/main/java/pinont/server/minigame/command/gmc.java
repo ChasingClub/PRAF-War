@@ -1,17 +1,15 @@
 package pinont.server.minigame.command;
 
 
-import org.bukkit.*;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.potion.PotionEffect;
-import pinont.server.minigame.Minigame;
 
 import static org.bukkit.Bukkit.getServer;
-import static pinont.server.minigame.Minigame.Plname;
 
 public class gmc implements CommandExecutor, Listener {
     @Override
@@ -30,6 +28,9 @@ public class gmc implements CommandExecutor, Listener {
                         p.setGameMode(GameMode.CREATIVE);
                         p.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"CREATIVE");
                         return true;
+                    } else {
+                        sender.sendMessage(ChatColor.RED+"You don't have the permission");
+                        return true;
                     }
                 }
             } else if (args.length == 1) {
@@ -45,7 +46,7 @@ public class gmc implements CommandExecutor, Listener {
                     argplayer.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"CREATIVE"+ChatColor.GRAY+" By "+ChatColor.YELLOW+sender.getName());
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.RED+"You dont have the permission");
+                    sender.sendMessage(ChatColor.RED+"You don't have the permission");
                     return true;
                 }
             } else {

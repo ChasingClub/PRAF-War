@@ -28,6 +28,9 @@ public class health implements CommandExecutor, Listener {
                         p.setHealth(p.getMaxHealth());
                         p.sendMessage(ChatColor.GOLD + p.getName() + " has been healed.");
                         return true;
+                    } else {
+                        sender.sendMessage(ChatColor.RED+"You don't have the permission");
+                        return true;
                     }
                 }
             } else if (args.length == 1) {
@@ -44,7 +47,7 @@ public class health implements CommandExecutor, Listener {
                     sender.sendMessage(ChatColor.GOLD + argplayer.getName() + " has been healed.");
                     return true;
                 } else {
-                    sender.sendMessage("You dont have the permission");
+                    sender.sendMessage(ChatColor.RED+"You don't have the permission");
                     return true;
                 }
             } else {

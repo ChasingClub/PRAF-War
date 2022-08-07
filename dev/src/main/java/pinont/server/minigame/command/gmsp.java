@@ -27,6 +27,9 @@ public class gmsp implements CommandExecutor, Listener {
                         p.setGameMode(GameMode.SPECTATOR);
                         p.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"SPECTATOR");
                         return true;
+                    } else {
+                        sender.sendMessage(ChatColor.RED+"You don't have the permission");
+                        return true;
                     }
                 }
             } else if (args.length == 1) {
@@ -42,7 +45,7 @@ public class gmsp implements CommandExecutor, Listener {
                     argplayer.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"SPECTATOR"+ChatColor.GRAY+" By "+ChatColor.YELLOW+sender.getName());
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.RED+"You dont have the permission");
+                    sender.sendMessage(ChatColor.RED+"You don't have the permission");
                     return true;
                 }
             } else {

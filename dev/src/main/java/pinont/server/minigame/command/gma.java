@@ -28,6 +28,9 @@ public class gma implements CommandExecutor, Listener {
                         p.setGameMode(GameMode.ADVENTURE);
                         p.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"ADVENTURE");
                         return true;
+                    } else {
+                        sender.sendMessage(ChatColor.RED+"You don't have the permission");
+                        return true;
                     }
                 }
             } else if (args.length == 1) {
@@ -43,7 +46,7 @@ public class gma implements CommandExecutor, Listener {
                     argplayer.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"ADVENTURE"+ChatColor.GRAY+" By "+ChatColor.YELLOW+sender.getName());
                     return true;
                 } else {
-                    sender.sendMessage(ChatColor.RED+"You dont have the permission");
+                    sender.sendMessage(ChatColor.RED+"You don't have the permission");
                     return true;
                 }
             } else {

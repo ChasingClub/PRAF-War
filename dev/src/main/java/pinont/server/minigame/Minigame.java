@@ -15,7 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.permissions.PermissionAttachment;
@@ -78,7 +77,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("spawn").setExecutor(new spawn());
         getCommand("getkit").setExecutor(new kits());
         getCommand("feed").setExecutor(new feed());
-        getCommand("ping").setExecutor(new ping());
         getCommand("heal").setExecutor(new health());
         getCommand("gmc").setExecutor(new gmc());
         getCommand("gma").setExecutor(new gma());
@@ -99,10 +97,9 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new Respawn(), this);
         getServer().getPluginManager().registerEvents(new heal(), this);
         getServer().getPluginManager().registerEvents(new LeaveClear(), this);
-        getServer().getPluginManager().registerEvents(new feed(), this);
-        getServer().getPluginManager().registerEvents(new ping(), this);
-        getServer().getPluginManager().registerEvents(new JoinMessage(), this);;
+        getServer().getPluginManager().registerEvents(new JoinMessage(), this);
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
+        getServer().getPluginManager().registerEvents(new BADWords(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
@@ -156,7 +153,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
             p.playSound(loc , Sound.UI_TOAST_CHALLENGE_COMPLETE, 1000000000, 0);
         }
     }
-
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
         if (cmd.getName().equalsIgnoreCase("earape")) {

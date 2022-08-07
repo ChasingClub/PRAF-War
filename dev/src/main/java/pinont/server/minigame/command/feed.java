@@ -1,20 +1,14 @@
 package pinont.server.minigame.command;
 
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.potion.PotionEffect;
-import pinont.server.minigame.Minigame;
 
 import static org.bukkit.Bukkit.getServer;
-import static pinont.server.minigame.Minigame.Plname;
 
 public class feed implements CommandExecutor, Listener {
     @Override
@@ -34,6 +28,9 @@ public class feed implements CommandExecutor, Listener {
                         p.setSaturation(20f);
                         p.sendMessage(ChatColor.GOLD + p.getName() + " has been feed.");
                         return true;
+                    } else {
+                        sender.sendMessage(ChatColor.RED+"You don't have the permission");
+                        return true;
                     }
                 }
             } else if (args.length == 1) {
@@ -49,7 +46,7 @@ public class feed implements CommandExecutor, Listener {
                     sender.sendMessage(ChatColor.GOLD + argplayer.getName() + " has been feed.");
                     return true;
                 } else {
-                    sender.sendMessage("You dont have the permission");
+                    sender.sendMessage(ChatColor.RED+"You don't have the permission");
                     return true;
                 }
             } else {

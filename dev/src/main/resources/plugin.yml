@@ -2,17 +2,13 @@ name: 'PRAFWar'
 version: '${project.version}'
 main: pinont.server.minigame.Minigame
 api-version: 1.19
-authors: [ 'pinont' ]
+authors: [ 'Pinont','ItDragClick' ]
 description: Minigames for Pinont's Server
 
 commands:
   spawn:
     description: go to spawn
     usage: /spawn
-
-  ping:
-    description: ping
-    usage: /ping
 
   gms:
     description: set gamemode 0
