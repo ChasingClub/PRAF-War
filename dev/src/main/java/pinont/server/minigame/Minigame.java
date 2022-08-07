@@ -106,20 +106,21 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         // start output
         msgconsole(Plname + "CustomPlugin Been Loaded!");
 
-//        // Discord Webhook Started
-//        if (Webhook == "true") {
-//            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-//            webhook.addEmbed(new DiscordWebhook.EmbedObject()
-//                    .setDescription("Server Started.")
-//                    .addField("Time", getDate(), true)
-//                    .setColor(Color.GREEN)
-//            );
-//            try {
-//                webhook.execute();
-//            }catch (java.io.IOException e){
-//                getLogger().severe(e.getStackTrace().toString());
-//            }
-//        }
+        // Discord Webhook Started
+        if (Webhook == "true") {
+            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                    .setDescription("Server Started.")
+                    .addField("Time", getDate(), false)
+                    .addField("Server", "Main", false)
+                    .setColor(Color.GREEN)
+            );
+            try {
+                webhook.execute();
+            }catch (java.io.IOException e){
+                getLogger().severe(e.getStackTrace().toString());
+            }
+        }
 
         // combat thing
         this.combatList = new HashMap<>();
@@ -218,48 +219,48 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         return sdf.format(cal.getTime());
     }
-    @EventHandler
-    //JOIN SERVER
-    public void DCjoin(PlayerJoinEvent event) {
-
-        Player p = event.getPlayer();
-        if (Webhook == "true") {
-            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-            webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                    .setColor(Color.GREEN)
-                    .setDescription("+ **" + p.getName() + "**")
-                    .addField("Joined", getTime(), true)
-                    .addField("Server", "main", true)
-                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
-            );
-            try {
-                webhook.execute();
-            }catch (java.io.IOException e){
-                getLogger().severe(e.getStackTrace().toString());
-            }
-        }
-    }
-    @EventHandler
-    //LEAVE SERVER
-    public void DCleave(PlayerQuitEvent e) {
-
-        Player p = e.getPlayer();
-        if (Webhook == "true") {
-            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-            webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                    .setColor(Color.RED)
-                    .setDescription("- **" + p.getName() + "**")
-                    .addField("Disconnected", getTime(), true)
-                    .addField("Server", "main", true)
-                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
-            );
-            try {
-                webhook.execute();
-            } catch (java.io.IOException event) {
-                getLogger().severe(event.getStackTrace().toString());
-            }
-        }
-    }
+//    @EventHandler
+//    //JOIN SERVER
+//    public void DCjoin(PlayerJoinEvent event) {
+//
+//        Player p = event.getPlayer();
+//        if (Webhook == "true") {
+//            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+//            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+//                    .setColor(Color.GREEN)
+//                    .setDescription("+ **" + p.getName() + "**")
+//                    .addField("Joined", getTime(), true)
+//                    .addField("Server", "main", true)
+//                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
+//            );
+//            try {
+//                webhook.execute();
+//            }catch (java.io.IOException e){
+//                getLogger().severe(e.getStackTrace().toString());
+//            }
+//        }
+//    }
+//    @EventHandler
+//    //LEAVE SERVER
+//    public void DCleave(PlayerQuitEvent e) {
+//
+//        Player p = e.getPlayer();
+//        if (Webhook == "true") {
+//            DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+//            webhook.addEmbed(new DiscordWebhook.EmbedObject()
+//                    .setColor(Color.RED)
+//                    .setDescription("- **" + p.getName() + "**")
+//                    .addField("Disconnected", getTime(), true)
+//                    .addField("Server", "main", true)
+//                    .setThumbnail("https://minotar.net/armor/bust/" + p.getName() + "/4096.png")
+//            );
+//            try {
+//                webhook.execute();
+//            } catch (java.io.IOException event) {
+//                getLogger().severe(event.getStackTrace().toString());
+//            }
+//        }
+//    }
     @EventHandler
     public void ACLogged(PlayerQuitEvent e) {
         Player p = e.getPlayer();
@@ -407,16 +408,17 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public void onDisable() {
         msgconsole(Plname + "Shutdown CustomPlugin");
         // Discord Webhook Started
-//        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-//        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-//                .setDescription("Server Stopped.")
-//                .addField("Time", getDate(), true)
-//                .setColor(Color.GREEN)
-//        );
-//        try {
-//            webhook.execute();
-//        }catch (java.io.IOException e){
-//            getLogger().severe(e.getStackTrace().toString());
-//        }
+        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
+        webhook.addEmbed(new DiscordWebhook.EmbedObject()
+                .setDescription("Server Stopped.")
+                .addField("Time", getDate(), false)
+                .addField("Server", "Main", false)
+                .setColor(Color.GRAY)
+        );
+        try {
+            webhook.execute();
+        }catch (java.io.IOException e){
+            getLogger().severe(e.getStackTrace().toString());
+        }
     }
 }
