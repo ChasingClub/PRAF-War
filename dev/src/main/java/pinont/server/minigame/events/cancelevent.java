@@ -30,7 +30,9 @@ public class cancelevent implements Listener {
     public void onInteract(PlayerInteractEvent e) {
         Player p = e.getPlayer();
         Block blk = e.getClickedBlock();
-        if (blk.getType().name().startsWith("POTTED_") || blk.getType() == Material.FLOWER_POT) {
+        if(blk == null) {
+            return;
+        }else if (blk.getType().name().startsWith("POTTED_") || blk.getType() == Material.FLOWER_POT) {
             if (p.getGameMode() != GameMode.CREATIVE) {
                 e.setCancelled(true);
                 return;
