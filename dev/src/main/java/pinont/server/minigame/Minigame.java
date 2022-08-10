@@ -1,14 +1,13 @@
 package pinont.server.minigame;
 
+import com.sk89q.worldedit.WorldEdit;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,35 +16,19 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 import pinont.server.minigame.command.*;
 import pinont.server.minigame.commandTabComplete.kitsTabable;
 import pinont.server.minigame.events.*;
-
-
-import java.awt.*;
 import java.awt.Color;
 import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
-
-import static org.bukkit.Bukkit.getServer;
+import java.util.*;
 
 public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
@@ -55,7 +38,8 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
     public String webhookURL = config.getString("DiscordWebhookURL");
     public String webhookURLAC = config.getString("AntiCheatHook");
     public String Webhook = config.getString("Webhook");
-    public Minigame plugin;
+
+
 
     public void msgconsole(String message){
         Bukkit.getConsoleSender().sendMessage(message);
@@ -100,6 +84,7 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
         getServer().getPluginManager().registerEvents(new BADWords(), this);
+        getServer().getPluginManager().registerEvents(new randomizer(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 

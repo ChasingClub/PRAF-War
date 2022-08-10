@@ -11,8 +11,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import pinont.server.minigame.Minigame;
 
-import java.util.HashMap;
-
 public class joinEvent implements Listener {
 
     @EventHandler

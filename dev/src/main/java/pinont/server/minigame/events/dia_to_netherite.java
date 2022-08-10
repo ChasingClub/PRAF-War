@@ -1,6 +1,9 @@
 package pinont.server.minigame.events;
 
-import org.bukkit.*;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,8 +13,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitScheduler;
 import pinont.server.minigame.Minigame;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 import static org.bukkit.Bukkit.getServer;
@@ -23,7 +24,8 @@ public class dia_to_netherite implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
         Player killer = target.getPlayer();
-        if (Minigame.ingame.contains(target.getName())) { // Newwwww check world to check Arraylist <-----------------------------
+//        if (Minigame.ingame.contains(target.getName())) { // this suck!
+        if (target.getWorld().getName().equals("NetheriteGame")) {
             ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
             ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
             ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);

@@ -90,8 +90,8 @@ proxies:
   proxy-protocol: false
   velocity:
     enabled: false
-    online-mode: true
-    secret: mgV0Kf6KrsePMqB/
+    online-mode: false
+    secret: ''
 scoreboards:
   save-empty-scoreboard-teams: false
   track-plugin-scoreboards: false
@@ -105,8 +105,6 @@ timings:
   enabled: true
   hidden-config-entries:
   - database
-  - settings.bungeecord-addresses
-  - settings.velocity-support.secret
   - proxies.velocity.secret
   history-interval: 300
   history-length: 3600
