@@ -1,4 +1,4 @@
-name: 'PRAFWar'
+name: 'PRAFWarPlugin'
 version: '1.0.2-SNAPSHOT'
 main: pinont.server.minigame.Minigame
 api-version: 1.19

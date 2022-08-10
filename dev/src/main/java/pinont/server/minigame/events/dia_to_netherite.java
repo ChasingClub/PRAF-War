@@ -25,7 +25,7 @@ public class dia_to_netherite implements Listener {
         Player target = event.getPlayer();
         Player killer = target.getPlayer();
 //        if (Minigame.ingame.contains(target.getName())) { // this suck!
-        if (target.getWorld().getName().equals("NetheriteGame")) {
+        if (target.getLocation().getWorld().getName().equals("NetheriteGame")) {
             ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
             ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
             ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
