@@ -16,7 +16,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -84,7 +83,6 @@ public class Minigame extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
         getServer().getPluginManager().registerEvents(new BADWords(), this);
-        getServer().getPluginManager().registerEvents(new randomizer(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
