@@ -1,6 +1,6 @@
 name: 'PRAFWarPlugin'
 version: '${project.version}'
-main: pinont.server.minigame.Minigame
+main: praf.server.praf
 api-version: 1.19
 authors: [ 'Pinont','ItDragClick' ]
 description: Minigames for Pinont's Server
