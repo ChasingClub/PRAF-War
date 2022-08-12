@@ -1,6 +1,0 @@
-name: PinontTest
-version: '${project.version}'
-main: pinont.dev.plugin
-api-version: 1.19
-authors: [ Pinont ]
-description: Pinont dev Plugin

@@ -1,4 +1,4 @@
-name: 'PRAFWarPlugin'
+name: 'PRAFWar'
 version: '${project.version}'
 main: praf.server.praf
 api-version: 1.19

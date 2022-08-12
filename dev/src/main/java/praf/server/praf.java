@@ -63,6 +63,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("gma").setExecutor(new gma());
         getCommand("gms").setExecutor(new gms());
         getCommand("gmsp").setExecutor(new gmsp());
+//        getCommand("duel").setExecutor(new duel()); // this is for bungee
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -71,7 +72,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
 //        getCommand("perm").setTabCompleter(new PermsList());
 
         // register Event
-        getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
+        getServer().getPluginManager().registerEvents(new netheriteStack(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
         getServer().getPluginManager().registerEvents(new Bhopping(), this);
@@ -85,7 +86,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
         this.getServer().getPluginManager().registerEvents(this, this);
 
         // start output
-        msgconsole(Plname + "CustomPlugin Been Loaded!");
+        msgconsole(Plname + "has Been Loaded!");
 
         // Discord Webhook Started
         if (Webhook == "true") {
@@ -105,7 +106,6 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
 
         // combat thing
         this.combatList = new HashMap<>();
-        getServer().getPluginManager().registerEvents(this, this);
         new BukkitRunnable()
         {
             @Override
@@ -387,7 +387,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
 
     @Override
     public void onDisable() {
-        msgconsole(Plname + "Shutdown CustomPlugin");
+        msgconsole(Plname + "Shutdown");
         // Discord Webhook Started
         DiscordWebhook webhook = new DiscordWebhook(webhookURL);
         webhook.addEmbed(new DiscordWebhook.EmbedObject()

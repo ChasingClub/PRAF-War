@@ -20,7 +20,7 @@ public class Respawn implements Listener {
             if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
                 p.getInventory().clear();
                 for (PotionEffect effect : p.getActivePotionEffects())
-                p.removePotionEffect(effect.getType());
+                    p.removePotionEffect(effect.getType());
             }
             p.sendMessage(ChatColor.RED + "You Died.");
         }
