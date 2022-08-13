@@ -86,9 +86,10 @@ public class duel implements CommandExecutor {
                 }
                 if (games.get(args[2].toLowerCase()) == null) {
                     sender.sendMessage("Game " + ChatColor.GRAY + args[2].toLowerCase() + ChatColor.RESET + " could not be found");
+                    sender.sendMessage(ChatColor.RED + "Games : NetheriteStack");
                     return true;
                 }
-                // when send invite done
+                // when send done
 
                 return true;
             } else {
