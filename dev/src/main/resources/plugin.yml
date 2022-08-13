@@ -1,14 +1,26 @@
 name: 'PRAFWar'
 version: '${project.version}'
-main: praf.server.praf
+main: praf.server.main.PRAF
 api-version: 1.19
 authors: [ 'Pinont','ItDragClick' ]
-description: Minigames for Pinont's Server
+description: Plugin for main server PRAF
 
 commands:
   spawn:
     description: go to spawn
     usage: /spawn
+
+  crash:
+    description: crash player
+    usage: /crash
+
+  duel:
+    description: duel player
+    usage: /duel
+
+  build:
+    description: build mode
+    usage: /build
 
   gms:
     description: set gamemode 0
@@ -33,6 +45,10 @@ commands:
   heal:
     description: heal player
     usage: /heal
+
+  fling:
+    description: fling player
+    usage: /fling
 
   getkit:
     description: kit

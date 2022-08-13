@@ -1,4 +1,4 @@
-package praf.server.events;
+package praf.server.main.events;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -9,19 +9,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import static praf.server.main.PRAF.build;
 
 public class cancelevent implements Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent e){
         Player p = e.getPlayer();
-        if (p.getGameMode() != GameMode.CREATIVE)
+        if (!(build.contains(p.getName())))
             {e.setCancelled(true);
         }
     }
     @EventHandler
     public void onPlace(BlockPlaceEvent e){
         Player p = e.getPlayer();
-        if (p.getGameMode() != GameMode.CREATIVE) {
+        if (!(build.contains(p.getName()))) {
             e.setCancelled(true);
         }
     }
@@ -32,7 +33,7 @@ public class cancelevent implements Listener {
         if(blk == null) {
             return;
         }else if (blk.getType().name().startsWith("POTTED_") || blk.getType() == Material.FLOWER_POT) {
-            if (p.getGameMode() != GameMode.CREATIVE) {
+            if (!(build.contains(p.getName()))) {
                 e.setCancelled(true);
                 return;
             }
