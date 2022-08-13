@@ -1,4 +1,4 @@
-package praf.server.events;
+package praf.server.main.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-import static praf.server.praf.Plname;
+import static praf.server.main.PRAF.Plname;
 
 public class canceldrops implements Listener {
 
