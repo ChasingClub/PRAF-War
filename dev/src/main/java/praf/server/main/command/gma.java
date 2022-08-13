@@ -1,4 +1,5 @@
-package praf.server.command;
+package praf.server.main.command;
+
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -10,10 +11,10 @@ import org.bukkit.event.Listener;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class gmsp implements CommandExecutor, Listener {
+public class gma implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("gmsp")) {
+        if (cmd.getName().equalsIgnoreCase("gma")) {
             // Check for arguments
             if (args.length == 0) {
                 if (!(sender instanceof Player)) {
@@ -24,8 +25,8 @@ public class gmsp implements CommandExecutor, Listener {
                     // Send command overview
                     if (sender.hasPermission("rank.admin")) {
                         // Define player object
-                        p.setGameMode(GameMode.SPECTATOR);
-                        p.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"SPECTATOR");
+                        p.setGameMode(GameMode.ADVENTURE);
+                        p.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"ADVENTURE");
                         return true;
                     } else {
                         sender.sendMessage(ChatColor.RED+"You don't have the permission");
@@ -40,9 +41,9 @@ public class gmsp implements CommandExecutor, Listener {
                         return true;
                     }
                     // Send command overview
-                    argplayer.setGameMode(GameMode.SPECTATOR);
-                    sender.sendMessage(ChatColor.GRAY +argplayer.getName()+" gamemode has been set to "+ChatColor.GREEN+"SPECTATOR");
-                    argplayer.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"SPECTATOR"+ChatColor.GRAY+" By "+ChatColor.YELLOW+sender.getName());
+                    argplayer.setGameMode(GameMode.ADVENTURE);
+                    sender.sendMessage(ChatColor.GRAY +argplayer.getName()+" gamemode has been set to "+ChatColor.GREEN+"ADVENTURE");
+                    argplayer.sendMessage(ChatColor.GRAY +"Your gamemode has been set to "+ChatColor.GREEN+"ADVENTURE"+ChatColor.GRAY+" By "+ChatColor.YELLOW+sender.getName());
                     return true;
                 } else {
                     sender.sendMessage(ChatColor.RED+"You don't have the permission");
@@ -51,8 +52,8 @@ public class gmsp implements CommandExecutor, Listener {
             } else {
                 // Send command overview
                 sender.sendMessage(ChatColor.YELLOW + " Plugin help:");
-                sender.sendMessage("/gmsp" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Set gamemode spectator for yourself.");
-                sender.sendMessage("/gmsp <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Set gamemode spectator for other player.");
+                sender.sendMessage("/gma" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Set gamemode adventure for yourself.");
+                sender.sendMessage("/gma <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Set gamemode adventure for other player.");
                 return true;
             }
 

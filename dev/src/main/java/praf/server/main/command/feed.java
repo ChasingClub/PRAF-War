@@ -1,4 +1,4 @@
-package praf.server.command;
+package praf.server.main.command;
 
 
 import org.bukkit.ChatColor;

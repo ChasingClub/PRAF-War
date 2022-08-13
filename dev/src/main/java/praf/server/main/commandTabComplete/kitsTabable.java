@@ -1,4 +1,4 @@
-package praf.server.command.Args;
+package praf.server.main.commandTabComplete;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

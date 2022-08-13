@@ -1,4 +1,4 @@
-package praf.server.command;
+package praf.server.main.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -6,13 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.util.Vector;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class health implements CommandExecutor, Listener {
+public class fling implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("heal")) {
+        if (cmd.getName().equalsIgnoreCase("fling")) {
             // Check for arguments
             if (args.length == 0) {
                 if (!(sender instanceof Player)) {
@@ -23,10 +24,8 @@ public class health implements CommandExecutor, Listener {
                     // Send command overview
                     if (sender.hasPermission("rank.admin")) {
                         // Define player object
-                        p.setFoodLevel(20);
-                        p.setSaturation(20f);;
-                        p.setHealth(p.getMaxHealth());
-                        p.sendMessage(ChatColor.GOLD + p.getName() + " has been healed.");
+                        p.setVelocity(new Vector(0, 200, 0));
+                        p.sendMessage(ChatColor.GOLD + p.getName() + " has been FLUNG.");
                         return true;
                     } else {
                         sender.sendMessage(ChatColor.RED+"You don't have the permission");
@@ -41,10 +40,8 @@ public class health implements CommandExecutor, Listener {
                         return true;
                     }
                     // Send command overview
-                    argplayer.setFoodLevel(20);
-                    argplayer.setSaturation(20f);
-                    argplayer.setHealth(argplayer.getMaxHealth());
-                    sender.sendMessage(ChatColor.GOLD + argplayer.getName() + " has been healed.");
+                    argplayer.setVelocity(new Vector(0, 200, 0));
+                    sender.sendMessage(ChatColor.GOLD + argplayer.getName() + " has been FLUNG.");
                     return true;
                 } else {
                     sender.sendMessage(ChatColor.RED+"You don't have the permission");
@@ -53,8 +50,8 @@ public class health implements CommandExecutor, Listener {
             } else {
                 // Send command overview
                 sender.sendMessage(ChatColor.YELLOW + " Plugin help:");
-                sender.sendMessage("/heal" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Heal yourself.");
-                sender.sendMessage("/heal <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Heal other player.");
+                sender.sendMessage("/fling" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Fling yourself.");
+                sender.sendMessage("/fling <player>" + ChatColor.GRAY + " - " + ChatColor.GOLD + "Fling other player.");
                 return true;
             }
 
