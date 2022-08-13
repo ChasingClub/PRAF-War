@@ -1,25 +1,13 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/command/spawn.java
 package praf.server.main.command;
-========
-package praf.server.command;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/spawn.java
 
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/command/spawn.java
 import praf.server.main.PRAF;
-========
-
-import static praf.server.praf.Plname;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/spawn.java
 
 public class spawn implements CommandExecutor {
     @Override

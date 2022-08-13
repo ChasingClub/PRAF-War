@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/command/gma.java
 package praf.server.main.command;
-========
-package praf.server.command;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/gma.java
 
 
 import org.bukkit.ChatColor;

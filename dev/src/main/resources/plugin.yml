@@ -1,10 +1,6 @@
 name: 'PRAFWar'
 version: '${project.version}'
-<<<<<<< HEAD
 main: praf.server.main.PRAF
-=======
-main: praf.server.praf
->>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b
 api-version: 1.19
 authors: [ 'Pinont','ItDragClick' ]
 description: Plugin for main server PRAF

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/events/cancelevent.java
 package praf.server.main.events;
-========
-package praf.server.events;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/events/cancelevent.java
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;

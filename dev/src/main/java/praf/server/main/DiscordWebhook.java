@@ -1,17 +1,16 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/DiscordWebhook.java
 package praf.server.main;
-========
-package praf.server;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/DiscordWebhook.java
 
 import javax.net.ssl.HttpsURLConnection;
-import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 
 public class DiscordWebhook {
 

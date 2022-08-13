@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
 package praf.server.main;
-========
-package praf.server;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -22,22 +18,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
 import praf.server.main.commandTabComplete.kitsTabable;
 import praf.server.main.command.*;
 import praf.server.main.events.*;
 
 
-========
-import praf.server.command.*;
-import praf.server.command.Args.kitsTabable;
-import praf.server.events.*;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
 import java.awt.Color;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -46,11 +36,6 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static ArrayList<String> build = new ArrayList<String>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
     public static HashMap<String, String> games = new HashMap<String, String>();
-========
-import java.util.*;
-
-public class praf extends JavaPlugin implements Listener, CommandExecutor {
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
     public static ArrayList<String> ingame = new ArrayList<String>();
@@ -58,12 +43,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
     public String webhookURL = config.getString("DiscordWebhookURL");
     public String webhookURLAC = config.getString("AntiCheatHook");
     public String Webhook = config.getString("Webhook");
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
     public PRAF plugin;
-========
-
-
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
 
     public static void msgconsole(String message){
         Bukkit.getConsoleSender().sendMessage(message);
@@ -95,15 +75,11 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("gma").setExecutor(new gma());
         getCommand("gms").setExecutor(new gms());
         getCommand("gmsp").setExecutor(new gmsp());
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
         getCommand("fling").setExecutor(new fling());
         getCommand("crash").setExecutor(new crash());
         getCommand("earape").setExecutor(new earape());
         getCommand("build").setExecutor(new build());
         getCommand("duel").setExecutor(new duel());
-========
-//        getCommand("duel").setExecutor(new duel()); // this is for bungee
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -112,7 +88,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
 //        getCommand("perm").setTabCompleter(new PermsList());
 
         // register Event
-        getServer().getPluginManager().registerEvents(new netheriteStack(), this);
+        getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
         getServer().getPluginManager().registerEvents(new Bhopping(), this);
@@ -122,11 +98,11 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
         getServer().getPluginManager().registerEvents(new BADWords(), this);
-//        getServer().getPluginManager().registerEvents(new noAbuseGame(), this);
-        this.getServer().getPluginManager().registerEvents(this, this);
+//        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
+//        this.getServer().getPluginManager().registerEvents(this, this);
 
         // start output
-        msgconsole(Plname + "has Been Loaded!");
+        msgconsole(Plname + "CustomPlugin Been Loaded!");
 
         // Discord Webhook Started
         if (Webhook == "true") {
@@ -146,6 +122,7 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
 
         // combat thing
         this.combatList = new HashMap<>();
+        getServer().getPluginManager().registerEvents(this, this);
         new BukkitRunnable()
         {
             @Override
@@ -206,17 +183,10 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
     @EventHandler
     public void ACLogged(PlayerQuitEvent e) {
         Player p = e.getPlayer();
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
         if (PRAF.combatList.containsKey(e.getPlayer().getName())) {
             Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has combat logged.");
             p.damage(21.0D);
             PRAF.combatList.put(p.getName(), -1);
-========
-        if (praf.combatList.containsKey(e.getPlayer().getName())) {
-            Bukkit.broadcastMessage(ChatColor.RED + p.getName() + " has combat logged.");
-            p.damage(21.0D);
-            praf.combatList.put(p.getName(), -1);
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
             //////////////////////////////////////////////////////////
             if (Webhook == "true") {
                 DiscordWebhook webhookAC = new DiscordWebhook(webhookURLAC);
@@ -294,77 +264,4 @@ public class praf extends JavaPlugin implements Listener, CommandExecutor {
             }
         }
     }
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/PRAF.java
-========
-
-
-
-//    public void setupPermission(Player p) {
-//        PermissionAttachment attachment = p.addAttachment(this);
-//        this.playerPermission.put(p.getUniqueId(), attachment);
-//        permissionSetter(p.getUniqueId());
-//    }
-//
-//    private void permissionSetter(UUID uuid) {
-//        PermissionAttachment attachment = this.playerPermission.get(this);
-//        for (String groups : this.getConfig().getConfigurationSection("Groups").getKeys(false)) {
-//            for (String permissions : this.getConfig().getStringList("Groups." + groups + ".permissions")) {
-//                attachment.setPermission(permissions, true);
-//            }
-//        }
-//    }
-
-
-//    public enum PermissionLevel {
-//        ADMIN("rank.admin"),
-//        MOD("rank.mod"),
-//        JR_MOD("rank.jrmod");
-//
-//        private String perm;
-//
-//
-//        PermissionLevel(String perm) {
-//            this.perm = perm;
-//        }
-//
-//        PermissionLevel() {}
-//
-//        public static Boolean has(Player p, PermissionLevel level) {
-//            PermissionLevel[] values = values();
-//            int ord = level.ordinal();
-//            for (int i = ord; i >= 0; i--) {
-//                PermissionLevel lvl = values[i];
-//                if (lvl.perm == null) {
-//                    return true;
-//                }
-//                if (p.hasPermission(lvl.perm)) {
-//                    return true;
-//                }
-//
-//            }
-//            return false;
-//        }
-//
-//
-//    }
-
-
-    @Override
-    public void onDisable() {
-        msgconsole(Plname + "Shutdown");
-        // Discord Webhook Started
-        DiscordWebhook webhook = new DiscordWebhook(webhookURL);
-        webhook.addEmbed(new DiscordWebhook.EmbedObject()
-                .setDescription("Server Stopped.")
-                .addField("Time", getDate(), false)
-                .addField("Server", "Main", false)
-                .setColor(Color.GRAY)
-        );
-        try {
-            webhook.execute();
-        }catch (java.io.IOException e){
-            getLogger().severe(e.getStackTrace().toString());
-        }
-    }
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/praf.java
 }

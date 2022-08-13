@@ -14,11 +14,7 @@ deadmsg:
   - " was turned to ash by "
   - " was melted by "
   - " was stomped by "
-<<<<<<< HEAD
   -
-=======
-
->>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b
 wc:
   16x16:
     1:
@@ -29,8 +25,4 @@ wc:
     1:
       schematic: ""
   32x32:
-<<<<<<< HEAD
     schematic: ""
-=======
-      schematic: ""
->>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b

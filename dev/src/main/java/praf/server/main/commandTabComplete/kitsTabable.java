@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/commandTabComplete/kitsTabable.java
 package praf.server.main.commandTabComplete;
-========
-package praf.server.command.Args;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/Args/kitsTabable.java
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

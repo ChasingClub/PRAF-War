@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/command/kits.java
 package praf.server.main.command;
-========
-package praf.server.command;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/kits.java
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,17 +8,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
-<<<<<<<< HEAD:dev/src/main/java/praf/server/main/command/kits.java
 import static praf.server.main.PRAF.Plname;
-========
-import static praf.server.praf.Plname;
->>>>>>>> c292d9304f1200056fc9e0f4bf3cebfcebc5f51b:dev/src/main/java/praf/server/command/kits.java
 
 public class kits implements CommandExecutor {
-
-    public ItemStack shield = new ItemStack(Material.SHIELD);
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -48,7 +37,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else if (args[1].equalsIgnoreCase("diamond")) {
@@ -69,7 +57,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else if (args[1].equalsIgnoreCase("gold")) {
@@ -90,7 +77,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
 
@@ -112,7 +98,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else if (args[1].equalsIgnoreCase("leather")) {
@@ -133,7 +118,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else if (args[1].equalsIgnoreCase("chainmail")) {
@@ -154,7 +138,6 @@ public class kits implements CommandExecutor {
 
                         target.getInventory().setArmorContents(armor);
                         target.getInventory().setStorageContents(weapon);
-                        target.getInventory().setItemInOffHand(shield);
                         p.sendMessage(Plname + args[1] + " kit has been equiped!");
 
                     } else {
