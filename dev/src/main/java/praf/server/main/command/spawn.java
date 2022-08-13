@@ -1,17 +1,13 @@
-package praf.server.command;
+package praf.server.main.command;
 
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-
-import static praf.server.praf.Plname;
+import praf.server.main.PRAF;
 
 public class spawn implements CommandExecutor {
     @Override
@@ -30,11 +26,11 @@ public class spawn implements CommandExecutor {
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 p.teleport(SessionWorldSpawn);
                 if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-                    p.sendMessage(Plname + "You have been teleported to spawn.");
+                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
                 }else if (p.getGameMode() == GameMode.CREATIVE) {
-                    p.sendMessage(Plname + "You have been teleported to spawn and your item will not clear.");
+                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
                 }else if (p.getGameMode() == GameMode.SPECTATOR) {
-                    p.sendMessage(Plname + "You have been teleported to spawn and your item will not clear.");
+                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
                 }
             }
         } else {

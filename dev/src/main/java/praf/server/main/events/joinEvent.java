@@ -1,4 +1,4 @@
-package praf.server.events;
+package praf.server.main.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -9,15 +9,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
-import praf.server.praf;
+import praf.server.main.PRAF;
 
 public class joinEvent implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (praf.combatList.containsKey(e.getPlayer().getName())) {
-            praf.combatList.put(p.getName(), 0);
+        if (PRAF.combatList.containsKey(e.getPlayer().getName())) {
+            PRAF.combatList.put(p.getName(), 0);
         }
         if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR){
             p.setGameMode(GameMode.ADVENTURE);

@@ -1,4 +1,4 @@
-package praf.server.events;
+package praf.server.main.events;
 
 import com.destroystokyo.paper.event.player.PlayerJumpEvent;
 import org.bukkit.entity.Player;
@@ -10,12 +10,7 @@ public class Bhopping implements Listener {
     @EventHandler
     public void onPlayerJump(PlayerJumpEvent e) {
         Player player = e.getPlayer();
-        if (player.getLocation().getWorld().getName().endsWith("world") || player.getLocation().getWorld().getName().endsWith("Lobby")) {
-
-            if (player.getLocation().getWorld().getName().endsWith("Lobby") && player.hasPermission("lobby.bhop") && player.isSneaking() && player.isSprinting() && !(player.isFlying()) && !(player.isInLava()) && !(player.isClimbing()) && !(player.isSwimming())) {
-                player.setVelocity(player.getLocation().getDirection());
-            }
-//
+        if (player.getLocation().getWorld().getName().endsWith("world")) {
             if (player.isSneaking() && player.isSprinting() && !(player.isFlying()) && !(player.isInLava()) && !(player.isClimbing()) && !(player.isSwimming()) && player.getLocation().getBlockY() <= 80) {
                 if (player.getLocation().getWorld().getName().endsWith("world")) {
                     player.setFoodLevel(player.getFoodLevel() - 3);
