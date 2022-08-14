@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +15,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -34,6 +39,8 @@ import static org.bukkit.Bukkit.getServer;
 public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, String> anti = new HashMap<String, String>();
     public static ArrayList<String> build = new ArrayList<String>();
+    public static HashMap<Player, String> kits = new HashMap<Player, String>();
+    public static HashMap<String, Integer> playerkits = new HashMap<String, Integer>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
     public static HashMap<String, String> games = new HashMap<String, String>();
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
@@ -52,7 +59,11 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     @Override
     public void onEnable() {
         // Add String Arraylist/HashMap
+        for (Player p : getServer().getOnlinePlayers()){
+            kits.put(p,"Default");
+        }
         anti.put("ItDragClick", "1");anti.put("NotAGodBridger", "2");
+        playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("blueaxeblackhead", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
         duel.put("invite", "1");duel.put("accept", "2");duel.put("reject", "3");
         games.put("netheritestack", "1");
         // Set Normal TimeZone
@@ -80,6 +91,8 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("earape").setExecutor(new earape());
         getCommand("build").setExecutor(new build());
         getCommand("duel").setExecutor(new duel());
+        getCommand("givekit").setExecutor(new givekit());
+        getCommand("setkit").setExecutor(new setkit());
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -169,7 +182,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player){
             Player target = (Player) event.getEntity();
             Player damager = (Player) event.getDamager();
-            if((damager.getHealth() < 20)) {
+            if(event.isCancelled() != true) {
                 combatList.put(target.getName(), 11);
                 combatList.put(damager.getName(), 11);
             }
@@ -214,7 +227,6 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         {
             Player p = Bukkit.getPlayer(id);
             int timer = combatList.get(id) - 1;
-            System.out.println(combatList);
             if (timer == 0){
                 p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "You are no longer combat"));
             }
@@ -247,8 +259,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         }
     }
     @EventHandler
-    public void CancelCmd(PlayerCommandPreprocessEvent event)
-    {
+    public void CancelCmd(PlayerCommandPreprocessEvent event){
         if (combatList.containsKey(event.getPlayer().getName()))
         {
             List<String> commands = Arrays.asList("/spawn");

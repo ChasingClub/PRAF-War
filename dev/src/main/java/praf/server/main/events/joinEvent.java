@@ -11,6 +11,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import praf.server.main.PRAF;
 
+import static praf.server.main.PRAF.kits;
+
 public class joinEvent implements Listener {
 
     @EventHandler
@@ -19,6 +21,7 @@ public class joinEvent implements Listener {
         if (PRAF.combatList.containsKey(e.getPlayer().getName())) {
             PRAF.combatList.put(p.getName(), 0);
         }
+        kits.put(p,"Default");
         if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR){
             p.setGameMode(GameMode.ADVENTURE);
             World SessionWorld = Bukkit.getServer().getWorld("world");

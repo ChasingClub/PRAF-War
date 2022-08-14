@@ -14,6 +14,14 @@ commands:
     description: crash player
     usage: /crash
 
+  givekit:
+    description: givekit player
+    usage: /givekit
+
+  setkit:
+    description: setkit player
+    usage: /setkit
+
   duel:
     description: duel player
     usage: /duel
