@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import praf.server.main.PRAF;
 
+import static praf.server.main.PRAF.GetKitSelect;
+
 public class spawn implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -21,6 +23,7 @@ public class spawn implements CommandExecutor {
                         for (PotionEffect effect : p.getActivePotionEffects())
                             p.removePotionEffect(effect.getType());
                     }
+                    GetKitSelect(p);
                 }
                 World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);

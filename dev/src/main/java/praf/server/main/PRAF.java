@@ -16,6 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -39,6 +40,7 @@ import static org.bukkit.Bukkit.getServer;
 public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, String> anti = new HashMap<String, String>();
     public static ArrayList<String> build = new ArrayList<String>();
+    public static ArrayList<String> lore = new ArrayList<String>();
     public static HashMap<Player, String> kits = new HashMap<Player, String>();
     public static HashMap<String, Integer> playerkits = new HashMap<String, Integer>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
@@ -61,11 +63,22 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         // Add String Arraylist/HashMap
         for (Player p : getServer().getOnlinePlayers()){
             kits.put(p,"Default");
+            if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR){
+                World SessionWorld = Bukkit.getServer().getWorld("world");
+                Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
+                p.teleport(SessionWorldSpawn);
+                p.getInventory().clear();
+                GetKitSelect(p);
+            }
+            p.sendMessage(Plname+"Core plugin have been reloaded!");
         }
         anti.put("ItDragClick", "1");anti.put("NotAGodBridger", "2");
         playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("blueaxeblackhead", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
         duel.put("invite", "1");duel.put("accept", "2");duel.put("reject", "3");
         games.put("netheritestack", "1");
+        // add lore
+        lore.add("§r");
+        lore.add("§7Right Click to open kit selector menu!");
         // Set Normal TimeZone
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Bangkok"));
         // Config
@@ -111,6 +124,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new JoinMessage(), this);
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
         getServer().getPluginManager().registerEvents(new BADWords(), this);
+        getServer().getPluginManager().registerEvents(new openkitmenu(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
@@ -182,11 +196,29 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player){
             Player target = (Player) event.getEntity();
             Player damager = (Player) event.getDamager();
-            if(event.isCancelled() != true) {
+            if(!(event.isCancelled())) {
                 combatList.put(target.getName(), 11);
                 combatList.put(damager.getName(), 11);
             }
         }
+    }
+    public static void GetKitSelect(Player p){
+        PlayerInventory inv = p.getInventory();
+
+        ItemStack Kit = new ItemStack(Material.BOOK, 1);
+
+        ItemMeta im = Kit.getItemMeta();
+
+        im.setDisplayName("§aKit Selector §7(Right Click)");
+        im.setLore(lore);
+        im.setUnbreakable(true);
+        im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        im.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+        im.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+
+        Kit.setItemMeta(im);
+        Kit.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
+        inv.setItem(4, Kit);
     }
     public String getDate(){
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Bangkok"));

@@ -8,6 +8,8 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
 import praf.server.main.PRAF;
 
+import static praf.server.main.PRAF.GetKitSelect;
+
 public class Respawn implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
@@ -19,6 +21,7 @@ public class Respawn implements Listener {
                 e.setRespawnLocation(SessionWorldSpawn);
             if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
                 p.getInventory().clear();
+                GetKitSelect(p);
                 for (PotionEffect effect : p.getActivePotionEffects())
                 p.removePotionEffect(effect.getType());
             }
