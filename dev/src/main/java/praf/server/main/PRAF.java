@@ -260,10 +260,10 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             Player p = Bukkit.getPlayer(id);
             int timer = combatList.get(id) - 1;
             if (timer == 0){
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "You are no longer combat"));
+                p.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GRAY + "You are no longer combat"));
             }
             if (timer > 0){
-                p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.RED + "You are in combat"));
+                p.sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.RED + "You are in combat"));
                 temp.put(id, timer);
             }
         }
