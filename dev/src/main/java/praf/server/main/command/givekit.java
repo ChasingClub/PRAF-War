@@ -134,8 +134,7 @@ public class givekit implements CommandExecutor {
                 itd[1].setItemMeta(imd2);
                 itd[2].setItemMeta(imd3);
                 itd[3].setItemMeta(imd4);
-                itd[0].addEnchantment(Enchantment.DAMAGE_ALL, 4);
-                itd[1].addEnchantment(Enchantment.DAMAGE_ALL, 2);
+                itd[0].addEnchantment(Enchantment.DAMAGE_ALL, 2);
                 itd[2].addEnchantment(Enchantment.ARROW_DAMAGE, 3);
                 itd[3].addEnchantment(Enchantment.PIERCING, 3);
                 itd[3].addEnchantment(Enchantment.QUICK_CHARGE, 2);
@@ -166,7 +165,7 @@ public class givekit implements CommandExecutor {
                 itt[1].addEnchantment(Enchantment.DAMAGE_ALL, 1);
                 itt[2].addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
                 itt[2].addEnchantment(Enchantment.IMPALING, 3);
-                itt[2].addEnchantment(Enchantment.LOYALTY, 2);
+                itt[2].addEnchantment(Enchantment.LOYALTY, 3);
 
                 inv.clear();
                 p.getInventory().setArmorContents(armor);
@@ -184,8 +183,9 @@ public class givekit implements CommandExecutor {
                 CB11.setUnbreakable(true);
                 itb[0].setItemMeta(imb1);
                 CB1.setItemMeta(CB11);
-                itb[0].addEnchantment(Enchantment.DAMAGE_ALL, 2);
+                itb[0].addEnchantment(Enchantment.DAMAGE_ALL, 3);
                 CB1.addEnchantment(Enchantment.PIERCING, 3);
+                CB1.addEnchantment(Enchantment.QUICK_CHARGE, 1);
 
                 inv.clear();
                 p.getInventory().setArmorContents(armor);
@@ -193,6 +193,7 @@ public class givekit implements CommandExecutor {
                 p.getInventory().setItemInOffHand(CB1);
                 inv.addItem(new ItemStack(Material.COOKED_BEEF, 64));
                 inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 4));
+                inv.setItem(9, arrow);
             }if (kits.get(p) == "admin") {
                 ItemStack[] armora = new ItemStack[4];
                 armora[0] = new ItemStack(Material.IRON_BOOTS, 1);
