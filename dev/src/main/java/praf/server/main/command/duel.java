@@ -1,6 +1,14 @@
 package praf.server.main.command;
 
+<<<<<<< Updated upstream
 import org.bukkit.*;
+=======
+import static org.bukkit.Bukkit.getServer;
+import static praf.server.main.PRAF.*;
+
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+>>>>>>> Stashed changes
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,7 +30,11 @@ public class duel implements CommandExecutor {
      * args[1] = player target
      * args[2] = games -> { NetheriteStack, DodgeBall, Paintball, ClassicIron, ClassicDiamond, OP, Crystal }
      * args[3].. error with arguments
+<<<<<<< Updated upstream
      */
+=======
+     * */
+>>>>>>> Stashed changes
 
     public String usage = Plname + ChatColor.YELLOW + "/duel <invite/accept/reject> <player>";
     public HashMap<Player, Player> inviteList;
@@ -122,10 +134,35 @@ public class duel implements CommandExecutor {
                     } else {
 
                         player.sendMessage(Plname + targetName + " has reject the duels"); // reject
+<<<<<<< Updated upstream
 
+=======
+                        inviteList.remove(player, target);
+                        player.sendMessage(inviteList.get(player).toString());
+>>>>>>> Stashed changes
                     }
                 }
             } else if (args.length == 3) {
+<<<<<<< Updated upstream
+=======
+                if (!(sender instanceof Player)) {
+                    sender.sendMessage("Can't use with console.");
+                    return true;
+                }
+                if (duel.get(args[0].toLowerCase()) == null) {
+                    sender.sendMessage(ChatColor.YELLOW+" Plugin help:");
+                    sender.sendMessage(ChatColor.RED+"/duel <invite/accept/reject> <player> <game>");
+                    return true;
+                }
+                Player argplayer = getServer().getPlayer(args[1]);
+                if (argplayer == null) {
+                    sender.sendMessage("Player " + ChatColor.GRAY + args[1].toLowerCase() + ChatColor.RESET + " could not be found");
+                    return true;
+                }
+                if (games.get(args[2].toLowerCase()) == null) {
+                    sender.sendMessage("Game " + ChatColor.GRAY + args[2].toLowerCase() + ChatColor.RESET + " could not be found");
+                    return true;
+>>>>>>> Stashed changes
 
                 Player target = Bukkit.getPlayer(args[1]);
 
@@ -150,7 +187,10 @@ public class duel implements CommandExecutor {
 
                     player.sendMessage(usage);
                     player.sendMessage(Plname + "Game -> " + game);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 }
 
             } else {
