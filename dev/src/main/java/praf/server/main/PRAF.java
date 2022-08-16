@@ -36,6 +36,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static ArrayList<String> build = new ArrayList<String>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
     public static HashMap<String, String> games = new HashMap<String, String>();
+
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
     public static ArrayList<String> ingame = new ArrayList<String>();
