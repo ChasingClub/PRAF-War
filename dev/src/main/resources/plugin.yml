@@ -14,6 +14,10 @@ commands:
     description: crash player
     usage: /crash
 
+  kaboom:
+    description: kaboom player
+    usage: /kaboom
+
   givekit:
     description: givekit player
     usage: /givekit

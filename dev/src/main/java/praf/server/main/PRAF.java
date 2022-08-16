@@ -108,6 +108,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("duel").setExecutor(new duel());
         getCommand("givekit").setExecutor(new givekit());
         getCommand("setkit").setExecutor(new setkit());
+        getCommand("kaboom").setExecutor(new kaboom());
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -127,6 +128,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new cancelevent(), this);
         getServer().getPluginManager().registerEvents(new BADWords(), this);
         getServer().getPluginManager().registerEvents(new openkitmenu(), this);
+        getServer().getPluginManager().registerEvents(new adminfireball(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
