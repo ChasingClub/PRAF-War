@@ -26,6 +26,7 @@ public class dia_to_netherite implements Listener {
             ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
             ItemStack armorChest = new ItemStack(Material.NETHERITE_CHESTPLATE);
             ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
+            if (target.getInventory().getHelmet() == null){return;}
             ItemMeta itemMeta = Objects.requireNonNull(target.getInventory().getHelmet()).getItemMeta();
             if ((target.getWorld().getName()).equals("Netherite_game")) { // if player respawn at Void_World
                 if (target.getInventory().getHelmet() != null && (target.getInventory().getHelmet().getType()).equals(Material.DIAMOND_HELMET)) {

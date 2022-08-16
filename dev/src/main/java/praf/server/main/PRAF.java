@@ -40,6 +40,7 @@ import static org.bukkit.Bukkit.getServer;
 public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, String> anti = new HashMap<String, String>();
     public static ArrayList<String> build = new ArrayList<String>();
+    public static HashMap<String, HashMap<String, String>> inviteList = new HashMap<String, HashMap<String, String>>();
     public static ArrayList<String> lore = new ArrayList<String>();
     public static HashMap<Player, String> kits = new HashMap<Player, String>();
     public static HashMap<String, Integer> playerkits = new HashMap<String, Integer>();
@@ -75,6 +76,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         anti.put("ItDragClick", "1");anti.put("NotAGodBridger", "2");
         playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("blueaxeblackhead", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
         duel.put("invite", "1");duel.put("accept", "2");duel.put("reject", "3");
+        //"NetheriteStack, DodgeBall, Paintball, ClassicIron, ClassicDiamond, OP, Crystal"
         games.put("netheritestack", "1");
         // add lore
         lore.add("§r");
