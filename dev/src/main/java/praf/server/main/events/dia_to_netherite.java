@@ -4,31 +4,60 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitScheduler;
+import praf.server.main.PRAF;
 
 import java.util.Objects;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.Plname;
+import static praf.server.main.PRAF.*;
 
 public class dia_to_netherite implements Listener {
 
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         Player target = event.getPlayer();
-        Player killer = target.getPlayer();
-//        if (Minigame.ingame.contains(target.getName())) { // Newwwww check world to check Arraylist <-----------------------------
-            ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
-            ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
-            ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
-            ItemStack armorChest = new ItemStack(Material.NETHERITE_CHESTPLATE);
-            ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
-            if (target.getInventory().getHelmet() == null){return;}
-            ItemMeta itemMeta = Objects.requireNonNull(target.getInventory().getHelmet()).getItemMeta();
-            if ((target.getWorld().getName()).equals("Netherite_game")) { // if player respawn at Void_World
+        Player killer = target.getKiller();
+        if (target instanceof Player && killer instanceof Player) {
+            if (ingame.get(target.getName()) != null) { // Newwwww check world to check HashMap <-----------------------------
+                killer.teleport(killer.getBedSpawnLocation());
+                if (target.getInventory().contains(Material.NETHERITE_AXE)) {
+                    target.getInventory().clear();
+                    killer.getInventory().clear();
+                    target.sendMessage(Plname + "Nice Try! you has been defeated by " + killer.getName());
+                    killer.sendMessage(Plname + "GG! you have defeated " + target.getName());
+                    World SessionWorld = Bukkit.getServer().getWorld("world");
+                    Location Spawn = new Location(SessionWorld, 64.5, 180, 26.5);
+                    target.setGameMode(GameMode.ADVENTURE);
+                    killer.setGameMode(GameMode.ADVENTURE);
+                    event.setRespawnLocation(Spawn);
+                    target.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                    killer.teleport(Spawn);
+                    killer.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                    ingame.remove(target.getName());
+                    ingame.remove(killer.getName());
+                    GetKitSelect(target);
+                    GetKitSelect(killer);
+                    PRAF.combatList.put(killer.getName(), 0);
+                    PRAF.combatList.put(target.getName(), 0);
+                    return;
+                }
+                ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
+                ItemStack armorBoots = new ItemStack(Material.NETHERITE_BOOTS);
+                ItemStack armorLegs = new ItemStack(Material.NETHERITE_LEGGINGS);
+                ItemStack armorChest = new ItemStack(Material.NETHERITE_CHESTPLATE);
+                ItemStack totem = new ItemStack(Material.TOTEM_OF_UNDYING);
+                if (target.getInventory().getHelmet() == null) {
+                    return;
+                }
+                ItemMeta itemMeta = Objects.requireNonNull(target.getInventory().getHelmet()).getItemMeta();
+    //            if ((target.getWorld().getName()).equals("Netherite_game")) { // if player respawn at Void_World
                 if (target.getInventory().getHelmet() != null && (target.getInventory().getHelmet().getType()).equals(Material.DIAMOND_HELMET)) {
                     target.getInventory().setHelmet(armorHead); // repalce target helmet after respawn
                 } else if (target.getInventory().getHelmet() != null && (target.getInventory().getBoots().getType()).equals(Material.DIAMOND_BOOTS) && target.getInventory().getBoots() != null) {
@@ -51,28 +80,8 @@ public class dia_to_netherite implements Listener {
                             item.setType(Material.NETHERITE_AXE);
                         }
                     }
-                } else if (target.getInventory().contains(Material.NETHERITE_AXE) && target.getInventory().contains(Material.SHIELD)) {
-                    target.setGameMode(GameMode.SPECTATOR);
-                    target.sendMessage(Plname + "Nice Try! you has been defeated by " + killer.getName());
-                    killer.setGameMode(GameMode.SPECTATOR);
-                    target.sendMessage(Plname + "GG! you have defeated " + target.getName());
-                    target.getInventory().clear();
-                    killer.getInventory().clear();
-                    BukkitScheduler scheduler = getServer().getScheduler();
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    World SessionWorld = getServer().getWorld("world");
-                    Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
-                    target.teleport(SessionWorldSpawn);
-                    target.sendMessage("Send Back to spawn");
-
-                } else {
-                    return;
                 }
             }
+        }
     }
 }

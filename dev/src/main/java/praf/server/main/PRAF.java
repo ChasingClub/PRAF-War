@@ -48,7 +48,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, String> games = new HashMap<String, String>();
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
-    public static ArrayList<String> ingame = new ArrayList<String>();
+    public static HashMap<String, String> ingame = new HashMap<String, String>();
     public FileConfiguration config = this.getConfig();
     public String webhookURL = config.getString("DiscordWebhookURL");
     public String webhookURLAC = config.getString("AntiCheatHook");
@@ -118,6 +118,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
 
         // register Event
         getServer().getPluginManager().registerEvents(new dia_to_netherite(), this);
+        getServer().getPluginManager().registerEvents(new slotitem(), this);
         getServer().getPluginManager().registerEvents(new canceldrops(), this);
         getServer().getPluginManager().registerEvents(new joinEvent(), this);
         getServer().getPluginManager().registerEvents(new Bhopping(), this);
@@ -159,6 +160,8 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             @Override
             public void run(){
                 onDelay();
+//                System.out.println(ingame);
+//                System.out.println(combatList);
             }
         }.runTaskTimer(this, 0, 20);
         new BukkitRunnable()
@@ -281,13 +284,16 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         List<String> sl = config.getStringList("deadmsg");
         String s = sl.get(r.nextInt(sl.size()));
         if (killer instanceof Player && p instanceof Player) {
+            World SessionWorldNeth = Bukkit.getServer().getWorld("Netherite_game");
             if (killer.getName() == p.getName()) {
                 World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180.5, 26.5);
-                p.teleport(SessionWorldSpawn);
-                p.getInventory().clear();
-                for (PotionEffect effect : p.getActivePotionEffects())
-                    p.removePotionEffect(effect.getType());
+                if (p.getWorld() != SessionWorldNeth) {
+                    p.teleport(SessionWorldSpawn);
+                    p.getInventory().clear();
+                    for (PotionEffect effect : p.getActivePotionEffects())
+                        p.removePotionEffect(effect.getType());
+                }
                 Bukkit.broadcastMessage(ChatColor.RED + p.getName() + ChatColor.YELLOW + " has killed themself by accident.");
                 return;
             }

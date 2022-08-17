@@ -119,6 +119,8 @@ public class duel implements CommandExecutor {
                             target.getInventory().setItemInOffHand(shield);
                             player.getInventory().setItem(9, arrow);
                             target.getInventory().setItem(9, arrow);
+                            ingame.put(player.getName(), target.getName());
+                            ingame.put(target.getName(), player.getName());
                         } else {
                             player.sendMessage(Plname + ChatColor.RED + "Game: " + game);
                         }
@@ -204,6 +206,7 @@ public class duel implements CommandExecutor {
                             HashMap<String, String> values = new HashMap<>();
                             values.put(player.getName(), args[2].toLowerCase());
                             inviteList.put(target.getName(), values); // adds player to duels List
+                            player.sendMessage(Plname+"Duel have been sent to "+target.getName());
 
                         }
 
