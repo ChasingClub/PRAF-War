@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -147,33 +148,34 @@ public class givekit implements CommandExecutor {
                 inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 4));
                 inv.setItem(9, arrow);
             }if (kits.get(p) == "trident") {
-                ItemStack[] itt = new ItemStack[3];
+                ItemStack[] itt = new ItemStack[2];
                 itt[0] = new ItemStack(Material.DIAMOND_SWORD, 1);
                 itt[1] = new ItemStack(Material.DIAMOND_AXE, 1);
-                itt[2] = new ItemStack(Material.TRIDENT, 1);
+                ItemStack trident = new ItemStack(Material.TRIDENT, 1);
                 ItemMeta imt1 = itt[0].getItemMeta();
                 ItemMeta imt2 = itt[1].getItemMeta();
-                ItemMeta imt3 = itt[2].getItemMeta();
+                ItemMeta imt3 = trident.getItemMeta();
                 imt1.setUnbreakable(true);
                 imt2.setUnbreakable(true);
                 imt3.setUnbreakable(true);
                 itt[0].setItemMeta(imt1);
                 itt[1].setItemMeta(imt2);
-                itt[2].setItemMeta(imt3);
+                trident.setItemMeta(imt3);
                 itt[0].addEnchantment(Enchantment.DAMAGE_ALL, 3);
                 itt[0].addEnchantment(Enchantment.KNOCKBACK, 1);
                 itt[1].addEnchantment(Enchantment.DAMAGE_ALL, 1);
-                itt[2].addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
-                itt[2].addEnchantment(Enchantment.IMPALING, 3);
-                itt[2].addEnchantment(Enchantment.LOYALTY, 3);
+                trident.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+                trident.addEnchantment(Enchantment.IMPALING, 3);
+                trident.addEnchantment(Enchantment.LOYALTY, 3);
 
                 inv.clear();
                 p.getInventory().setArmorContents(armor);
                 p.getInventory().setStorageContents(itt);
+                p.getInventory().setItemInOffHand(trident);
                 inv.addItem(new ItemStack(Material.COOKED_BEEF, 64));
                 inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 4));
                 inv.setItem(9, arrow);
-            }if (kits.get(p) == "blueaxeblackhead") {
+            }if (kits.get(p) == "viking") {
                 ItemStack[] itb = new ItemStack[1];
                 itb[0] = new ItemStack(Material.DIAMOND_AXE, 1);
                 ItemStack CB1 = new ItemStack(Material.CROSSBOW, 1);

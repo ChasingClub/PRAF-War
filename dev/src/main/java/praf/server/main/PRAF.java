@@ -8,27 +8,30 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 import praf.server.main.commandTabComplete.kitsTabable;
 import praf.server.main.command.*;
 import praf.server.main.events.*;
 
 
+import javax.swing.plaf.synth.Region;
 import java.awt.Color;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -43,16 +46,21 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, HashMap<String, String>> inviteList = new HashMap<String, HashMap<String, String>>();
     public static ArrayList<String> lore = new ArrayList<String>();
     public static HashMap<Player, String> kits = new HashMap<Player, String>();
+    public static HashMap<String, Boolean> maps = new HashMap<String, Boolean>();
+    public static HashMap<String, String> playerinmap = new HashMap<String, String>();
     public static HashMap<String, Integer> playerkits = new HashMap<String, Integer>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
     public static HashMap<String, String> games = new HashMap<String, String>();
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
+    public static HashMap<String, Integer> bhopcooldown = new HashMap<String, Integer>();
     public static HashMap<String, String> ingame = new HashMap<String, String>();
     public FileConfiguration config = this.getConfig();
     public String webhookURL = config.getString("DiscordWebhookURL");
     public String webhookURLAC = config.getString("AntiCheatHook");
     public String Webhook = config.getString("Webhook");
+    private ReflectionUtils reflectionUtils;
+    private Boolean enableVoidSaving = true;
     public PRAF plugin;
 
     public static void msgconsole(String message){
@@ -61,7 +69,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     // ENABLED SERVER
     @Override
     public void onEnable() {
-        // Add String Arraylist/HashMap
+        // First Load
         for (Player p : getServer().getOnlinePlayers()){
             kits.put(p,"Default");
             if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR){
@@ -73,8 +81,10 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             }
             p.sendMessage(Plname+"Core plugin have been reloaded!");
         }
+        // Add String Arraylist/HashMap
+        maps.put("Colosseum", true);maps.put("Beach", true);
         anti.put("ItDragClick", "1");anti.put("NotAGodBridger", "2");
-        playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("blueaxeblackhead", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
+        playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("viking", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
         duel.put("invite", "1");duel.put("accept", "2");duel.put("reject", "3");
         //"NetheriteStack, DodgeBall, Paintball, ClassicIron, ClassicDiamond, OP, Crystal"
         games.put("netheritestack", "1");
@@ -130,6 +140,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getServer().getPluginManager().registerEvents(new BADWords(), this);
         getServer().getPluginManager().registerEvents(new openkitmenu(), this);
         getServer().getPluginManager().registerEvents(new adminfireball(), this);
+        getServer().getPluginManager().registerEvents(new consumeCooldown(), this);
 //        getServer().getPluginManager().registerEvents(new cancelcombat(), this);
 //        this.getServer().getPluginManager().registerEvents(this, this);
 
@@ -160,6 +171,11 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             @Override
             public void run(){
                 onDelay();
+                onDelay2();
+                ClearTrident();
+//                System.out.println(maps);
+//                System.out.println(inviteList);
+//                System.out.println(bhopcooldown);
 //                System.out.println(ingame);
 //                System.out.println(combatList);
             }
@@ -197,6 +213,128 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             }
         }
     }
+    public void ClearTrident() {
+        World SessionWorld = Bukkit.getServer().getWorld("world");
+        for(Entity t : SessionWorld.getEntities()) {
+            if(t instanceof Trident) {
+                ProjectileSource p = ((Trident) t).getShooter();
+                if (p instanceof Player) {
+                    Cuboid cuboid = new Cuboid(Bukkit.getServer().getWorld("world"), 160, 50, -66, -24, 2, 121);
+                    if (!(cuboid.contains(((Player) p).getLocation()))) {
+                        if (((Player) p).getWorld() == Bukkit.getServer().getWorld("world")) {
+                            t.remove();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @EventHandler(ignoreCancelled = true)
+    private void onProjectileLaunch(ProjectileLaunchEvent event)
+    {
+        if(event.getEntityType() == EntityType.TRIDENT && (event.getEntity().getShooter() instanceof Player))
+        {
+            Player p = (Player) event.getEntity().getShooter();
+            ItemStack tridentItem = null;
+            boolean fromOffhand = false;
+            // If the player is holding two tridents, only the one from the main hand will be thrown
+            // (Unless the player starts charging in the offhand then equips a trident in the main hand)
+            if(p.getInventory().getItemInMainHand().getType() == Material.TRIDENT)
+            {
+                tridentItem = p.getInventory().getItemInMainHand();
+            }
+            else if(p.getInventory().getItemInOffHand().getType() == Material.TRIDENT)
+            {
+                fromOffhand = true;
+                tridentItem = p.getInventory().getItemInOffHand();
+            }
+
+            // The trident could be thrown "artificially"
+            if(tridentItem != null)
+            {
+                // Check if it was thrown from the offhand
+                if(fromOffhand)
+                {
+                    event.getEntity().setMetadata("offhand", new FixedMetadataValue(this, true));
+                }
+
+                if(tridentItem.getEnchantmentLevel(Enchantment.IMPALING) != 0)
+                {
+                    event.getEntity().setMetadata("impaling", new FixedMetadataValue(this,
+                            tridentItem.getEnchantmentLevel(Enchantment.IMPALING)));
+                }
+
+                if(tridentItem.getEnchantmentLevel(Enchantment.LOYALTY) != 0)
+                {
+                    event.getEntity().setMetadata("loyalty", new FixedMetadataValue(this,
+                            tridentItem.getEnchantmentLevel(Enchantment.LOYALTY)));
+
+                    if(enableVoidSaving)
+                    {
+                        LoyaltyTridentTrackerTask trackerTask = new LoyaltyTridentTrackerTask((Trident) event.getEntity(), reflectionUtils);
+                        trackerTask.runTaskTimer(this, 0, 1);
+                    }
+                }
+            }
+
+        }
+    }
+    @EventHandler(ignoreCancelled = true)
+    private void onPlayerPickupArrow(PlayerPickupArrowEvent event)
+    {
+        if(
+                event.getArrow() instanceof Trident &&
+                event.getArrow().hasMetadata("offhand") &&
+                event.getPlayer().getInventory().getItemInOffHand().getType() == Material.AIR)
+        {
+            // The itemstack gets modified after the event so it must be cloned for future comparison
+            ItemStack item = event.getItem().getItemStack().clone();
+            Player p = event.getPlayer();
+
+            // The item isn't in the inventory yet so schedule a checker
+            getServer().getScheduler().scheduleSyncDelayedTask(this, () ->
+            {
+                // Double-check to ensure offhand item is still empty
+                if(event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR)
+                {
+                    return;
+                }
+
+                // Start from end of inventory to get the most recently added trident in case duplicates exist
+                ItemStack[] contents = p.getInventory().getContents();
+                for(int i = contents.length - 1; i >= 0; i--)
+                {
+                    ItemStack current = contents[i];
+                    if(current != null && current.equals(item))
+                    {
+                        // If we find the trident and the offhand is clear, put it in the offhand
+                        p.getInventory().setItemInOffHand(current.clone());
+                        current.setAmount(current.getAmount() - 1);
+                        break;
+                    }
+                }
+                p.updateInventory();
+            });
+        }
+    }
+    @EventHandler
+    public void PickupTrident(PlayerPickupItemEvent e){
+        Player p = e.getPlayer();
+        PlayerInventory inv = p.getInventory();
+        ItemStack it = e.getItem().getItemStack();
+        ItemStack tri = new ItemStack(Material.TRIDENT, 1);
+        if (it.getType() == Material.TRIDENT){
+            if (inv.getItemInOffHand().getType() == Material.TRIDENT){
+                p.sendMessage("Have another TriDENT!!!!");
+                inv.removeItem(tri);
+                p.updateInventory();
+            }if (inv.contains(Material.TRIDENT)){
+                p.sendMessage("Have another TriDENT!!!!");
+                inv.removeItem(tri);
+                p.updateInventory();
+            }
+        }
+    }
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event)
     {
@@ -204,8 +342,22 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             Player target = (Player) event.getEntity();
             Player damager = (Player) event.getDamager();
             if(!(event.isCancelled())) {
-                combatList.put(target.getName(), 11);
-                combatList.put(damager.getName(), 11);
+                if (damager.getGameMode() != GameMode.CREATIVE){
+                    combatList.put(damager.getName(), 11);
+                }if (target.getGameMode() != GameMode.CREATIVE) {
+                    combatList.put(target.getName(), 11);
+                }
+            }
+        }
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Projectile){
+            Player target = (Player) event.getEntity();
+            Player shooter = (Player) ((Projectile) event.getDamager()).getShooter();
+            if(!(event.isCancelled())) {
+                if (shooter.getGameMode() != GameMode.CREATIVE){
+                    combatList.put(shooter.getName(), 11);
+                }if (target.getGameMode() != GameMode.CREATIVE) {
+                    combatList.put(target.getName(), 11);
+                }
             }
         }
     }
@@ -275,6 +427,21 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             }
         }
             combatList = temp;
+    }
+    public void onDelay2(){
+        HashMap<String, Integer> temp2 = new HashMap<>();
+        for (String id2 : bhopcooldown.keySet())
+        {
+            Player p = Bukkit.getPlayer(id2);
+            int timer2 = bhopcooldown.get(id2) - 1;
+            if (timer2 == 0){
+                p.sendMessage(Plname+ChatColor.GREEN + "Your b-hop is ready to use.");
+            }
+            if (timer2 > 0){
+                temp2.put(id2, timer2);
+            }
+        }
+        bhopcooldown = temp2;
     }
     @EventHandler
     public void onKill(PlayerDeathEvent e) {

@@ -44,7 +44,7 @@ public class setkit implements CommandExecutor {
                         return true;
                     }
                     if (playerkits.get(args[1]) == null) {
-                        sender.sendMessage(ChatColor.RED + "Kits: Default, trident, blueaxeblackhead, bow, admin");
+                        sender.sendMessage(ChatColor.RED + "Kits: Default, trident, viking, bow, admin");
                         return true;
                     }
                     Integer kt = playerkits.get(args[1]);
@@ -54,13 +54,13 @@ public class setkit implements CommandExecutor {
                     }if (kt == 2) {
                         kits.put(argplayer, "trident");
                     }if (kt == 3) {
-                        kits.put(argplayer, "blueaxeblackhead");
+                        kits.put(argplayer, "viking");
                     }if (kt == 4) {
                         kits.put(argplayer, "bow");
                     }if (kt == 5) {
                         kits.put(argplayer, "admin");
                     }
-                    sender.sendMessage(ChatColor.GREEN + "Set Kit Completed!");
+                    sender.sendMessage(ChatColor.GREEN + "Set Kit "+ChatColor.RED+args[1]+ChatColor.GREEN+" for "+ChatColor.YELLOW+argplayer.getName()+ChatColor.GREEN+"!");
                     return true;
                 } else {
                     sender.sendMessage(ChatColor.RED+"You Don't have permission to do that!");

@@ -30,8 +30,6 @@ public class duel implements CommandExecutor {
             Player player = (Player) sender;
             String playerName = player.getName();
             World NetheriteStack = Bukkit.getServer().getWorld("netherite_game");
-            Location TeamA = new Location(NetheriteStack, 0.5, 66, 17.5);
-            Location TeamB = new Location(NetheriteStack, 0.5, 66, -16.5);
 
             ItemStack[] armor = new ItemStack[4];
             armor[0] = new ItemStack(Material.DIAMOND_BOOTS);
@@ -58,6 +56,36 @@ public class duel implements CommandExecutor {
 
             } else if (args.length == 1) { // if se
                 // nd only options
+                if (args[0].equalsIgnoreCase("leave")){
+                    if (ingame.get(player.getName()) == null) {
+                        player.sendMessage(Plname+ChatColor.RED+"You are not in the game!");
+                        return true;
+                    }
+                    World SessionWorld = Bukkit.getServer().getWorld("world");
+                    Location Spawn = new Location(SessionWorld, 64.5, 180, 26.5);
+                    Player target = getServer().getPlayer(ingame.get(player.getName()));
+                    // run duel leave
+                    target.getInventory().clear();
+                    player.getInventory().clear();
+                    combatList.put(player.getName(), 0);
+                    combatList.put(target.getName(), 0);
+                    target.teleport(Spawn);
+                    target.sendMessage(Plname + "GG! you have defeated " + player.getName());
+                    player.teleport(Spawn);
+                    player.sendMessage(Plname + "You lost because you left the game!");
+                    GetKitSelect(target);
+                    GetKitSelect(player);
+                    if (playerinmap.get(player.getName()).equals("Colosseum")){
+                        maps.put("Colosseum", true);
+                    }if (playerinmap.get(player.getName()).equals("Beach")){
+                        maps.put("Beach", true);
+                    }
+                    playerinmap.remove(player.getName());
+                    playerinmap.remove(target.getName());
+                    ingame.remove(target.getName());
+                    ingame.remove(player.getName());
+                    return true;
+                }
                 if (duel.get(args[0]) != null) {
 
                     player.sendMessage(Plname + ChatColor.RED + "You need to specify a player to duels!");
@@ -106,27 +134,62 @@ public class duel implements CommandExecutor {
 
                         if (inviteList.get(player.getName()).containsValue("netheritestack")) {
 
-                            target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
-                            player.teleport(TeamA); // send player to game
-                            target.teleport(TeamB);
-                            player.setBedSpawnLocation(TeamA, true);
-                            target.setBedSpawnLocation(TeamB, true);
-                            player.getInventory().setArmorContents(armor);
-                            target.getInventory().setArmorContents(armor);
-                            player.getInventory().setStorageContents(weapon);
-                            target.getInventory().setStorageContents(weapon);
-                            player.getInventory().setItemInOffHand(shield);
-                            target.getInventory().setItemInOffHand(shield);
-                            player.getInventory().setItem(9, arrow);
-                            target.getInventory().setItem(9, arrow);
-                            ingame.put(player.getName(), target.getName());
-                            ingame.put(target.getName(), player.getName());
+                            if (Boolean.TRUE.equals(maps.get("Colosseum"))) {
+                                target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
+                                Location TeamA = new Location(NetheriteStack, 0.5, 66, 17.5);
+                                Location TeamB = new Location(NetheriteStack, 0.5, 66, -16.5);
+                                player.teleport(TeamA);
+                                target.teleport(TeamB);
+                                player.setBedSpawnLocation(TeamA, true);
+                                target.setBedSpawnLocation(TeamB, true);
+                                player.getInventory().setArmorContents(armor);
+                                target.getInventory().setArmorContents(armor);
+                                player.getInventory().setStorageContents(weapon);
+                                target.getInventory().setStorageContents(weapon);
+                                player.getInventory().setItemInOffHand(shield);
+                                target.getInventory().setItemInOffHand(shield);
+                                player.getInventory().setItem(9, arrow);
+                                target.getInventory().setItem(9, arrow);
+                                player.setGameMode(GameMode.ADVENTURE);
+                                target.setGameMode(GameMode.ADVENTURE);
+                                ingame.put(player.getName(), target.getName());
+                                ingame.put(target.getName(), player.getName());
+                                playerinmap.put(player.getName(), "Colosseum");
+                                playerinmap.put(target.getName(), "Colosseum");
+                                maps.put("Colosseum", false);
+                                inviteList.remove(player.getName());
+                                return true;
+                            }else if (Boolean.TRUE.equals(maps.get("Beach"))) {
+                                target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
+                                Location TeamA = new Location(NetheriteStack, -99.5, 66, -80.5);
+                                Location TeamB = new Location(NetheriteStack, -99.5, 66, -118.5);
+                                player.teleport(TeamA);
+                                target.teleport(TeamB);
+                                player.setBedSpawnLocation(TeamA, true);
+                                target.setBedSpawnLocation(TeamB, true);
+                                player.getInventory().setArmorContents(armor);
+                                target.getInventory().setArmorContents(armor);
+                                player.getInventory().setStorageContents(weapon);
+                                target.getInventory().setStorageContents(weapon);
+                                player.getInventory().setItemInOffHand(shield);
+                                target.getInventory().setItemInOffHand(shield);
+                                player.getInventory().setItem(9, arrow);
+                                target.getInventory().setItem(9, arrow);
+                                ingame.put(player.getName(), target.getName());
+                                ingame.put(target.getName(), player.getName());
+                                playerinmap.put(player.getName(), "Beach");
+                                playerinmap.put(target.getName(), "Beach");
+                                maps.put("Beach", false);
+                                inviteList.remove(player.getName());
+                                return true;
+                            }else{
+                                player.sendMessage(Plname+ChatColor.RED+"No area available.");
+                                inviteList.remove(player.getName());
+                                return true;
+                            }
                         } else {
                             player.sendMessage(Plname + ChatColor.RED + "Game: " + game);
                         }
-
-                        inviteList.remove(player.getName());
-
                     }
                 } else if (args[0].equalsIgnoreCase("reject")) { // reject
                     if (target == null) {
@@ -194,6 +257,16 @@ public class duel implements CommandExecutor {
                         if (target == null) {
 
                             player.sendMessage(Plname + ChatColor.RED + "That player is offline!");
+                            return true;
+
+                        }if (ingame.get(target.getName()) != null){
+
+                            player.sendMessage(Plname + ChatColor.RED + "That player is currently in a game!");
+                            return true;
+
+                        }if (inviteList.get(target.getName()) != null){
+
+                            player.sendMessage(Plname + ChatColor.RED + "You already invite that player!");
                             return true;
 
                         } else {

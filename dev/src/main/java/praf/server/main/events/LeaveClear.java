@@ -29,11 +29,17 @@ public class LeaveClear implements Listener {
             p.getInventory().clear();
             Player target = getServer().getPlayer(ingame.get(p.getName()));
             target.getInventory().clear();
-            target.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
             combatList.put(target.getName(), 0);
             target.teleport(Spawn);
             target.sendMessage(Plname + "GG! you have defeated " + p.getName());
             GetKitSelect(target);
+            if (playerinmap.get(p.getName()).equals("Colosseum")){
+                maps.put("Colosseum", true);
+            }if (playerinmap.get(p.getName()).equals("Beach")){
+                maps.put("Beach", true);
+            }
+            playerinmap.remove(p.getName());
+            playerinmap.remove(target.getName());
             ingame.remove(target.getName());
             ingame.remove(p.getName());
         }

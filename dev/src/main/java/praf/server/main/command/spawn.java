@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import praf.server.main.PRAF;
 
-import static praf.server.main.PRAF.GetKitSelect;
+import static praf.server.main.PRAF.*;
 
 public class spawn implements CommandExecutor {
     @Override
@@ -17,6 +17,11 @@ public class spawn implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (sender instanceof Player) {
+                if (ingame.get(p.getName()) != null){
+                    p.sendMessage(Plname + ChatColor.RED + "You are currently in a game!");
+                    p.sendMessage(Plname + ChatColor.YELLOW + "You can use this command to leave the game "+ChatColor.GRAY+"- "+ChatColor.RED+"/duel leave");
+                    return true;
+                }
                 if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
                     if (p.getLocation().getWorld().getName().endsWith("world")) {
                         p.getInventory().clear();

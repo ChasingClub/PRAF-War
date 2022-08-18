@@ -20,6 +20,7 @@ public class slotitem implements Listener {
         ItemStack i = e.getCurrentItem();
         World SessionWorld = getServer().getWorld("Netherite_game");
         if (p.getGameMode() != GameMode.CREATIVE && p.getWorld() == SessionWorld){
+            if (i == null) {return;}
             if (i.getType() == Material.DIAMOND_HELMET || i.getType() == Material.DIAMOND_CHESTPLATE || i.getType() == Material.DIAMOND_LEGGINGS || i.getType() == Material.DIAMOND_BOOTS || i.getType() == Material.NETHERITE_HELMET || i.getType() == Material.NETHERITE_CHESTPLATE || i.getType() == Material.NETHERITE_LEGGINGS || i.getType() == Material.NETHERITE_BOOTS) {
                 e.setCancelled(true);
             }
@@ -31,6 +32,7 @@ public class slotitem implements Listener {
         ItemStack i = e.getOffHandItem();
         World SessionWorld = getServer().getWorld("Netherite_game");
         if (p.getGameMode() != GameMode.CREATIVE && p.getWorld() == SessionWorld){
+            if (i == null) {return;}
             if (i.getType() == Material.DIAMOND_HELMET || i.getType() == Material.DIAMOND_CHESTPLATE || i.getType() == Material.DIAMOND_LEGGINGS || i.getType() == Material.DIAMOND_BOOTS || i.getType() == Material.NETHERITE_HELMET || i.getType() == Material.NETHERITE_CHESTPLATE || i.getType() == Material.NETHERITE_LEGGINGS || i.getType() == Material.NETHERITE_BOOTS) {
                 e.setCancelled(true);
             }

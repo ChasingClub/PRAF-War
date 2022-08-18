@@ -34,16 +34,21 @@ public class dia_to_netherite implements Listener {
                     killer.sendMessage(Plname + "GG! you have defeated " + target.getName());
                     World SessionWorld = Bukkit.getServer().getWorld("world");
                     Location Spawn = new Location(SessionWorld, 64.5, 180, 26.5);
+                    if (playerinmap.get(killer.getName()).equals("Colosseum")){
+                        maps.put("Colosseum", true);
+                    }if (playerinmap.get(killer.getName()).equals("Beach")){
+                        maps.put("Beach", true);
+                    }
                     target.setGameMode(GameMode.ADVENTURE);
                     killer.setGameMode(GameMode.ADVENTURE);
                     event.setRespawnLocation(Spawn);
-                    target.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
                     killer.teleport(Spawn);
-                    killer.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
                     ingame.remove(target.getName());
                     ingame.remove(killer.getName());
                     GetKitSelect(target);
                     GetKitSelect(killer);
+                    playerinmap.remove(killer.getName());
+                    playerinmap.remove(target.getName());
                     PRAF.combatList.put(killer.getName(), 0);
                     PRAF.combatList.put(target.getName(), 0);
                     return;

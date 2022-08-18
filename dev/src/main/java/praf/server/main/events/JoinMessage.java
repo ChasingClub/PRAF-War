@@ -14,16 +14,16 @@ public class JoinMessage implements Listener {
     @EventHandler
     public void Joinmsg(PlayerJoinEvent event)
     {
-        event.setJoinMessage(null);
         Player player = event.getPlayer();
-        Bukkit.broadcastMessage(ChatColor.GREEN + "[+] " + ChatColor.GRAY + player.getName());
+        event.setJoinMessage(ChatColor.GREEN + "[+] " + ChatColor.GRAY + player.getName());
+//        Bukkit.broadcastMessage(ChatColor.GREEN + "[+] " + ChatColor.GRAY + player.getName());
     }
 
     @EventHandler
     public void Leavemsg(PlayerQuitEvent event)
     {
-        event.setQuitMessage(null);
         Player player = event.getPlayer();
-        Bukkit.broadcastMessage(ChatColor.RED + "[-] "+ChatColor.GRAY + player.getName());
+        event.setQuitMessage(ChatColor.RED + "[-] "+ChatColor.GRAY + player.getName());
+//        Bukkit.broadcastMessage(ChatColor.RED + "[-] "+ChatColor.GRAY + player.getName());
     }
 }
