@@ -50,6 +50,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     public static HashMap<String, String> playerinmap = new HashMap<String, String>();
     public static HashMap<String, Integer> playerkits = new HashMap<String, Integer>();
     public static HashMap<String,String> duel = new HashMap<String,String>();
+    public static HashMap<String,Integer> dueltimer = new HashMap<String,Integer>();
     public static HashMap<String, String> games = new HashMap<String, String>();
     public static String Plname = (ChatColor.DARK_GRAY + "[" + ChatColor.RED + "P" + ChatColor.AQUA + "R" + ChatColor.GREEN + "A" + ChatColor.BLUE + "F" + ChatColor.DARK_GRAY + "] "+ChatColor.GRAY);
     public static HashMap<String, Integer> combatList;
@@ -82,7 +83,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             p.sendMessage(Plname+"Core plugin have been reloaded!");
         }
         // Add String Arraylist/HashMap
-        maps.put("Colosseum", true);maps.put("Beach", true);
+        maps.put("Colosseum", true);maps.put("Beach", true);maps.put("Abyss", true);
         anti.put("ItDragClick", "1");anti.put("NotAGodBridger", "2");
         playerkits.put("Default", 1);playerkits.put("trident", 2);playerkits.put("viking", 3);playerkits.put("bow", 4);playerkits.put("admin", 5);
         duel.put("invite", "1");duel.put("accept", "2");duel.put("reject", "3");
@@ -119,6 +120,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         getCommand("givekit").setExecutor(new givekit());
         getCommand("setkit").setExecutor(new setkit());
         getCommand("kaboom").setExecutor(new kaboom());
+        getCommand("map").setExecutor(new map());
 //        getCommand("perm").setExecutor(new givePermission());
 
         // register Tab Argrument for Command
@@ -172,6 +174,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             public void run(){
                 onDelay();
                 onDelay2();
+                onDelay3();
                 ClearTrident();
 //                System.out.println(maps);
 //                System.out.println(inviteList);
@@ -215,14 +218,22 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
     }
     public void ClearTrident() {
         World SessionWorld = Bukkit.getServer().getWorld("world");
-        for(Entity t : SessionWorld.getEntities()) {
-            if(t instanceof Trident) {
-                ProjectileSource p = ((Trident) t).getShooter();
-                if (p instanceof Player) {
-                    Cuboid cuboid = new Cuboid(Bukkit.getServer().getWorld("world"), 160, 50, -66, -24, 2, 121);
-                    if (!(cuboid.contains(((Player) p).getLocation()))) {
-                        if (((Player) p).getWorld() == Bukkit.getServer().getWorld("world")) {
+        if (SessionWorld != null) {
+            for(Entity t : SessionWorld.getEntities()) {
+                if(t instanceof Trident) {
+                    ProjectileSource p = ((Trident) t).getShooter();
+                    if (p instanceof Player) {
+                        Player checkp = getServer().getPlayerExact(((Player) p).getName());
+                        if (checkp == null){
                             t.remove();
+                            msgconsole("Removed "+((Player) p).getName()+"'s Trident Because they left.");
+                            return;
+                        }
+                        Cuboid cuboid = new Cuboid(Bukkit.getServer().getWorld("world"), 160, 50, -66, -24, 2, 121);
+                        if (!(cuboid.contains(((Player) p).getLocation()))) {
+                            if (((Player) p).getWorld() == Bukkit.getServer().getWorld("world")) {
+                                t.remove();
+                            }
                         }
                     }
                 }
@@ -352,6 +363,7 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Projectile){
             Player target = (Player) event.getEntity();
             Player shooter = (Player) ((Projectile) event.getDamager()).getShooter();
+            if (shooter == null){return;}
             if(!(event.isCancelled())) {
                 if (shooter.getGameMode() != GameMode.CREATIVE){
                     combatList.put(shooter.getName(), 11);
@@ -435,13 +447,33 @@ public class PRAF extends JavaPlugin implements Listener, CommandExecutor {
             Player p = Bukkit.getPlayer(id2);
             int timer2 = bhopcooldown.get(id2) - 1;
             if (timer2 == 0){
-                p.sendMessage(Plname+ChatColor.GREEN + "Your b-hop is ready to use.");
+                if (p != null) {
+                    p.sendMessage(Plname+ChatColor.GREEN + "Your b-hop is ready to use.");
+                }
             }
             if (timer2 > 0){
                 temp2.put(id2, timer2);
+            }        }
+
+        bhopcooldown = temp2;
+    }
+    public void onDelay3(){
+        HashMap<String, Integer> temp3 = new HashMap<>();
+        for (String id3 : dueltimer.keySet())
+        {
+            Player p = Bukkit.getPlayer(id3);
+            int timer3 = dueltimer.get(id3) - 1;
+            if (timer3 == 0){
+                if (p != null) {
+                    inviteList.remove(p.getName());
+                    p.sendMessage(Plname+ChatColor.RED + "Invite has been rejected.");
+                }
+            }
+            if (timer3 > 0){
+                temp3.put(id3, timer3);
             }
         }
-        bhopcooldown = temp2;
+        dueltimer = temp3;
     }
     @EventHandler
     public void onKill(PlayerDeathEvent e) {

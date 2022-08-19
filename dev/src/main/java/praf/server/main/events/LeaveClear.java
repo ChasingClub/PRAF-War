@@ -37,6 +37,8 @@ public class LeaveClear implements Listener {
                 maps.put("Colosseum", true);
             }if (playerinmap.get(p.getName()).equals("Beach")){
                 maps.put("Beach", true);
+            }if (playerinmap.get(p.getName()).equals("Abyss")){
+                maps.put("Abyss", true);
             }
             playerinmap.remove(p.getName());
             playerinmap.remove(target.getName());

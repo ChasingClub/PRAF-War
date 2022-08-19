@@ -64,12 +64,12 @@ public class givekit implements CommandExecutor {
         ItemStack[] armor = new ItemStack[4];
         ItemStack arrow = new ItemStack(Material.ARROW, 48);
         armor[0] = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemMeta imh = armor[0].getItemMeta();
         armor[1] = new ItemStack(Material.IRON_LEGGINGS, 1);
-        ItemMeta imc = armor[1].getItemMeta();
         armor[2] = new ItemStack(Material.IRON_CHESTPLATE, 1);
-        ItemMeta iml = armor[2].getItemMeta();
         armor[3] = new ItemStack(Material.IRON_HELMET, 1);
+        ItemMeta imh = armor[0].getItemMeta();
+        ItemMeta imc = armor[1].getItemMeta();
+        ItemMeta iml = armor[2].getItemMeta();
         ItemMeta imb = armor[3].getItemMeta();
         ItemStack shield = new ItemStack(Material.SHIELD, 1);
         ItemMeta ims = shield.getItemMeta();

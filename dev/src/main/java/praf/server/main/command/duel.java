@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 
@@ -36,6 +37,18 @@ public class duel implements CommandExecutor {
             armor[1] = new ItemStack(Material.DIAMOND_LEGGINGS);
             armor[2] = new ItemStack(Material.DIAMOND_CHESTPLATE);
             armor[3] = new ItemStack(Material.DIAMOND_HELMET);
+            ItemMeta imh = armor[0].getItemMeta();
+            ItemMeta imc = armor[1].getItemMeta();
+            ItemMeta iml = armor[2].getItemMeta();
+            ItemMeta imb = armor[3].getItemMeta();
+            imh.setUnbreakable(true);
+            imc.setUnbreakable(true);
+            iml.setUnbreakable(true);
+            imb.setUnbreakable(true);
+            armor[0].setItemMeta(imh);
+            armor[1].setItemMeta(imc);
+            armor[2].setItemMeta(iml);
+            armor[3].setItemMeta(imb);
 
             ItemStack arrow = new ItemStack(Material.ARROW, 32);
 
@@ -79,6 +92,8 @@ public class duel implements CommandExecutor {
                         maps.put("Colosseum", true);
                     }if (playerinmap.get(player.getName()).equals("Beach")){
                         maps.put("Beach", true);
+                    }if (playerinmap.get(player.getName()).equals("Abyss")){
+                        maps.put("Abyss", true);
                     }
                     playerinmap.remove(player.getName());
                     playerinmap.remove(target.getName());
@@ -130,14 +145,15 @@ public class duel implements CommandExecutor {
                         return true;
 
                     }
+                    dueltimer.remove(player.getName());
                     if (inviteList.get(player.getName()) != null) {
 
                         if (inviteList.get(player.getName()).containsValue("netheritestack")) {
 
                             if (Boolean.TRUE.equals(maps.get("Colosseum"))) {
                                 target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
-                                Location TeamA = new Location(NetheriteStack, 0.5, 66, 17.5);
-                                Location TeamB = new Location(NetheriteStack, 0.5, 66, -16.5);
+                                Location TeamA = new Location(NetheriteStack, 0.5, 66, 17.5, 180f, 0f);
+                                Location TeamB = new Location(NetheriteStack, 0.5, 66, -16.5, 0f, 0f);
                                 player.teleport(TeamA);
                                 target.teleport(TeamB);
                                 player.setBedSpawnLocation(TeamA, true);
@@ -152,6 +168,8 @@ public class duel implements CommandExecutor {
                                 target.getInventory().setItem(9, arrow);
                                 player.setGameMode(GameMode.ADVENTURE);
                                 target.setGameMode(GameMode.ADVENTURE);
+                                player.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Colosseum\"");
+                                target.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Colosseum\"");
                                 ingame.put(player.getName(), target.getName());
                                 ingame.put(target.getName(), player.getName());
                                 playerinmap.put(player.getName(), "Colosseum");
@@ -161,8 +179,8 @@ public class duel implements CommandExecutor {
                                 return true;
                             }else if (Boolean.TRUE.equals(maps.get("Beach"))) {
                                 target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
-                                Location TeamA = new Location(NetheriteStack, -99.5, 66, -80.5);
-                                Location TeamB = new Location(NetheriteStack, -99.5, 66, -118.5);
+                                Location TeamA = new Location(NetheriteStack, -99.5, 66, -80.5, 180f, 0f);
+                                Location TeamB = new Location(NetheriteStack, -99.5, 66, -118.5, 0f, 0f);
                                 player.teleport(TeamA);
                                 target.teleport(TeamB);
                                 player.setBedSpawnLocation(TeamA, true);
@@ -175,11 +193,42 @@ public class duel implements CommandExecutor {
                                 target.getInventory().setItemInOffHand(shield);
                                 player.getInventory().setItem(9, arrow);
                                 target.getInventory().setItem(9, arrow);
+                                player.setGameMode(GameMode.ADVENTURE);
+                                target.setGameMode(GameMode.ADVENTURE);
+                                player.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Beach\"");
+                                target.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Beach\"");
                                 ingame.put(player.getName(), target.getName());
                                 ingame.put(target.getName(), player.getName());
                                 playerinmap.put(player.getName(), "Beach");
                                 playerinmap.put(target.getName(), "Beach");
                                 maps.put("Beach", false);
+                                inviteList.remove(player.getName());
+                                return true;
+                            }else if (Boolean.TRUE.equals(maps.get("Abyss"))) {
+                                target.sendMessage(Plname + player.getName() + ChatColor.GREEN + " has accept the duel"); // accept
+                                Location TeamA = new Location(NetheriteStack, -99.5, 65, 107.5, 180f, 0f);
+                                Location TeamB = new Location(NetheriteStack, -99.5, 65, 93.5, 0f, 0f);
+                                player.teleport(TeamA);
+                                target.teleport(TeamB);
+                                player.setBedSpawnLocation(TeamA, true);
+                                target.setBedSpawnLocation(TeamB, true);
+                                player.getInventory().setArmorContents(armor);
+                                target.getInventory().setArmorContents(armor);
+                                player.getInventory().setStorageContents(weapon);
+                                target.getInventory().setStorageContents(weapon);
+                                player.getInventory().setItemInOffHand(shield);
+                                target.getInventory().setItemInOffHand(shield);
+                                player.getInventory().setItem(9, arrow);
+                                target.getInventory().setItem(9, arrow);
+                                player.setGameMode(GameMode.ADVENTURE);
+                                target.setGameMode(GameMode.ADVENTURE);
+                                player.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Abyss\"");
+                                target.sendMessage(Plname+"You are currently playing on "+ChatColor.GREEN+"\"Abyss\"");
+                                ingame.put(player.getName(), target.getName());
+                                ingame.put(target.getName(), player.getName());
+                                playerinmap.put(player.getName(), "Abyss");
+                                playerinmap.put(target.getName(), "Abyss");
+                                maps.put("Abyss", false);
                                 inviteList.remove(player.getName());
                                 return true;
                             }else{
@@ -273,9 +322,11 @@ public class duel implements CommandExecutor {
 
                             // send to player with usage
                             target.sendMessage(Plname + ChatColor.GREEN + " " + playerName + " invites you for duels");
+                            target.sendMessage(Plname + ChatColor.GREEN + " invite will be remove in 20s");
                             target.sendMessage(Plname + ChatColor.GREEN + "Use /duel <accept/reject> " + playerName);
 
                             // send Clickable Message to player
+                            dueltimer.put(target.getName(), 20);
                             HashMap<String, String> values = new HashMap<>();
                             values.put(player.getName(), args[2].toLowerCase());
                             inviteList.put(target.getName(), values); // adds player to duels List

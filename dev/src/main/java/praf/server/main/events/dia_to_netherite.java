@@ -38,6 +38,8 @@ public class dia_to_netherite implements Listener {
                         maps.put("Colosseum", true);
                     }if (playerinmap.get(killer.getName()).equals("Beach")){
                         maps.put("Beach", true);
+                    }if (playerinmap.get(killer.getName()).equals("Abyss")){
+                        maps.put("Abyss", true);
                     }
                     target.setGameMode(GameMode.ADVENTURE);
                     killer.setGameMode(GameMode.ADVENTURE);

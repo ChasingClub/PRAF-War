@@ -116,26 +116,12 @@ public class cancelevent implements Listener {
     @EventHandler
     public void TridentHit(ProjectileHitEvent e){
         if (e.getEntity() instanceof Trident) {
+            Trident t = (Trident) e.getEntity();
             Player p = (Player) e.getEntity().getShooter();
-            if (p == null){return;}
+            if (p == null){t.remove();return;}
             Cuboid cuboid = new Cuboid(Bukkit.getServer().getWorld("world"), 160, 50, -66, -24, 2, 121);
             if (!(cuboid.contains(p.getLocation()))) {
                 if (p.getWorld() == Bukkit.getServer().getWorld("world")){
-                    Trident t = (Trident) e.getEntity();
-                    t.remove();
-                }
-            }
-        }
-    }
-    @EventHandler
-    public void TridentLaunch(ProjectileLaunchEvent e){
-        if (e.getEntity() instanceof Trident) {
-            Player p = (Player) e.getEntity().getShooter();
-            if (p == null){return;}
-            Cuboid cuboid = new Cuboid(Bukkit.getServer().getWorld("world"), 160, 50, -66, -24, 2, 121);
-            if (!(cuboid.contains(p.getLocation()))) {
-                if (p.getWorld() == Bukkit.getServer().getWorld("world")){
-                    Trident t = (Trident) e.getEntity();
                     t.remove();
                 }
             }

@@ -1,4 +1,4 @@
-name: 'PRAFWar'
+name: 'Core'
 version: '${project.version}'
 main: praf.server.main.PRAF
 api-version: 1.19
@@ -9,6 +9,10 @@ commands:
   spawn:
     description: go to spawn
     usage: /spawn
+
+  map:
+    description: map enable/disable
+    usage: /map
 
   crash:
     description: crash player

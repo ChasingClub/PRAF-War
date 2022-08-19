@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffect;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -23,6 +24,8 @@ public class health implements CommandExecutor, Listener {
                     // Send command overview
                     if (sender.hasPermission("rank.admin")) {
                         // Define player object
+                        for (PotionEffect effect : p.getActivePotionEffects())
+                            p.removePotionEffect(effect.getType());
                         p.setFoodLevel(20);
                         p.setSaturation(20f);;
                         p.setHealth(p.getMaxHealth());
@@ -41,6 +44,8 @@ public class health implements CommandExecutor, Listener {
                         return true;
                     }
                     // Send command overview
+                    for (PotionEffect effect : argplayer.getActivePotionEffects())
+                        argplayer.removePotionEffect(effect.getType());
                     argplayer.setFoodLevel(20);
                     argplayer.setSaturation(20f);
                     argplayer.setHealth(argplayer.getMaxHealth());
