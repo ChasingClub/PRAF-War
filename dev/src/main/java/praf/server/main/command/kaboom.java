@@ -8,8 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.Plname;
-import static praf.server.main.PRAF.anti;
+import static praf.server.main.Core.Plname;
 
 public class kaboom implements CommandExecutor {
     @Override

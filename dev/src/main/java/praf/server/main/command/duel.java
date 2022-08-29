@@ -1,7 +1,7 @@
 package praf.server.main.command;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.*;
+import static praf.server.main.Core.*;
 
 import org.bukkit.*;
 import org.bukkit.entity.Player;

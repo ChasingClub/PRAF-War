@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.*;
+import static praf.server.main.Core.*;
 
 public class map implements CommandExecutor {
     @Override

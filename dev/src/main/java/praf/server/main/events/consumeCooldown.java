@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
-import static praf.server.main.PRAF.bhopcooldown;
+import static praf.server.main.Core.bhopcooldown;
 
 public class consumeCooldown implements Listener {
     @EventHandler

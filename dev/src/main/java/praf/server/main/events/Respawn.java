@@ -6,19 +6,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.potion.PotionEffect;
-import praf.server.main.PRAF;
+import praf.server.main.Core;
 
-import static praf.server.main.PRAF.GetKitSelect;
+import static praf.server.main.Core.GetKitSelect;
 
 public class Respawn implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
         Player p = e.getPlayer();
         if (p.getLocation().getWorld().getName().endsWith("world")) {
-                PRAF.combatList.put(p.getName(), 0);
+                Core.combatList.put(p.getName(), 0);
                 World SessionWorld = Bukkit.getServer().getWorld("world");
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180.5, 26.5);
                 e.setRespawnLocation(SessionWorldSpawn);
+                p.teleport(SessionWorldSpawn);
             if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
                 p.getInventory().clear();
                 GetKitSelect(p);

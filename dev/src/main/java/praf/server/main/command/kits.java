@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static praf.server.main.PRAF.Plname;
+import static praf.server.main.Core.Plname;
 
 public class kits implements CommandExecutor {
     @Override

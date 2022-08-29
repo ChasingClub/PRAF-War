@@ -1,6 +1,6 @@
 name: 'Core'
 version: '${project.version}'
-main: praf.server.main.PRAF
+main: praf.server.main.Core
 api-version: 1.19
 authors: [ 'Pinont','ItDragClick' ]
 description: Plugin for main server PRAF
@@ -34,9 +34,15 @@ commands:
     description: duel player
     usage: /duel
 
-  build:
-    description: build mode
+  fly:
+    description: fly a player
+    usage: /fly
+    aliases: [fly, flight]
+
+  b:
+    description: enable/disable build mode
     usage: /build
+    aliases: [b, build]
 
   gms:
     description: set gamemode 0

@@ -6,8 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import static praf.server.main.PRAF.Plname;
-import static praf.server.main.PRAF.bhopcooldown;
+import static praf.server.main.Core.Plname;
+import static praf.server.main.Core.bhopcooldown;
 
 public class Bhopping implements Listener {
 
@@ -21,6 +21,7 @@ public class Bhopping implements Listener {
                     return;
                 }
                 player.setFoodLevel(player.getFoodLevel() - 3);
+                player.setSneaking(false);
                 player.setVelocity(player.getLocation().getDirection());
             }
         }

@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
-import static praf.server.main.PRAF.Plname;
+import static praf.server.main.Core.Plname;
 
 public class canceldrops implements Listener {
 

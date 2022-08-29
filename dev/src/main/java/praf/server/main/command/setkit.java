@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.kits;
-import static praf.server.main.PRAF.playerkits;
+import static praf.server.main.Core.kits;
+import static praf.server.main.Core.playerkits;
 
 public class setkit implements CommandExecutor {
     @Override

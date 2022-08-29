@@ -1,29 +1,22 @@
 package praf.server.main.events;
 
 import org.bukkit.*;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
-import praf.server.main.PRAF;
+import praf.server.main.Core;
 
-import java.util.ArrayList;
-
-import static praf.server.main.PRAF.GetKitSelect;
-import static praf.server.main.PRAF.kits;
+import static praf.server.main.Core.GetKitSelect;
+import static praf.server.main.Core.kits;
 
 public class joinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if (PRAF.combatList.containsKey(e.getPlayer().getName())) {
-            PRAF.combatList.put(p.getName(), 0);
+        if (Core.combatList.containsKey(e.getPlayer().getName())) {
+            Core.combatList.put(p.getName(), 0);
         }
         kits.put(p,"Default");
         if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR){

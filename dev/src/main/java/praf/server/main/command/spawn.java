@@ -7,10 +7,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-import praf.server.main.PRAF;
+import praf.server.main.Core;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.*;
+import static praf.server.main.Core.*;
 
 public class spawn implements CommandExecutor {
     @Override
@@ -35,11 +35,11 @@ public class spawn implements CommandExecutor {
                 Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                 p.teleport(SessionWorldSpawn);
                 if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                    p.sendMessage(Core.Plname + "You have been teleported to spawn.");
                 } else if (p.getGameMode() == GameMode.CREATIVE) {
-                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                    p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                 } else if (p.getGameMode() == GameMode.SPECTATOR) {
-                    p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                    p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                 }
                 return true;
             }else if (args.length == 1) {
@@ -61,11 +61,11 @@ public class spawn implements CommandExecutor {
                     Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                     p.teleport(SessionWorldSpawn);
                     if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn.");
                     } else if (p.getGameMode() == GameMode.CREATIVE) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     } else if (p.getGameMode() == GameMode.SPECTATOR) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     }
                     return true;
                 } else {
@@ -92,11 +92,11 @@ public class spawn implements CommandExecutor {
                     Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                     target.teleport(SessionWorldSpawn);
                     if (target.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-                        target.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                        target.sendMessage(Core.Plname + "You have been teleported to spawn.");
                     } else if (target.getGameMode() == GameMode.CREATIVE) {
-                        target.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        target.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     } else if (target.getGameMode() == GameMode.SPECTATOR) {
-                        target.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        target.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     }
                     p.sendMessage(Plname+"Sent "+target.getName()+" to spawn.");
                     return true;
@@ -120,11 +120,11 @@ public class spawn implements CommandExecutor {
                     Location SessionWorldSpawn = new Location(SessionWorld, 64.5, 180, 26.5);
                     p.teleport(SessionWorldSpawn);
                     if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn.");
                     } else if (p.getGameMode() == GameMode.CREATIVE) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     } else if (p.getGameMode() == GameMode.SPECTATOR) {
-                        p.sendMessage(PRAF.Plname + "You have been teleported to spawn and your item will not clear.");
+                        p.sendMessage(Core.Plname + "You have been teleported to spawn and your item will not clear.");
                     }
                     return true;
                 }else{

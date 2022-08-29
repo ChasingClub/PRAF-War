@@ -1,20 +1,18 @@
 package praf.server.main.command;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.*;
+import static praf.server.main.Core.*;
 
 public class build implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("build")) {
+        if (cmd.getName().equalsIgnoreCase("b") || cmd.getName().equalsIgnoreCase("build")) {
             // Check for arguments
             if (args.length == 0) {
                 if (!(sender instanceof Player)) {
@@ -24,7 +22,7 @@ public class build implements CommandExecutor {
                     if (!(sender.hasPermission("rank.admin"))) {
                         sender.sendMessage(org.bukkit.ChatColor.RED+"You Don't have permission to do that!");
                         return true;
-                    }else {
+                    } else {
                         Player p = (Player) sender;
                         if (!(build.contains(p.getName()))) {
                             build.add(p.getName());

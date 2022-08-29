@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.anti;
+import static praf.server.main.Core.anti;
 
 public class earape implements CommandExecutor {
 
@@ -42,7 +42,7 @@ public class earape implements CommandExecutor {
                     if (argplayer == null) {
                         sender.sendMessage("Player " + org.bukkit.ChatColor.GRAY + args[0] + org.bukkit.ChatColor.RESET + " could not be found");
                         return true;
-                    }else if (anti.get(argplayer.getName()) != null) {
+                    }else if (anti.get(argplayer.getUniqueId().toString()) != null) {
                         sender.sendMessage(org.bukkit.ChatColor.RED+"You can't earape that player.");
                         return true;
                     }

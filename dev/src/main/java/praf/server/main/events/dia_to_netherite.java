@@ -4,19 +4,14 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.scheduler.BukkitScheduler;
-import praf.server.main.PRAF;
+import praf.server.main.Core;
 
 import java.util.Objects;
 
-import static org.bukkit.Bukkit.getServer;
-import static praf.server.main.PRAF.*;
+import static praf.server.main.Core.*;
 
 public class dia_to_netherite implements Listener {
 
@@ -51,8 +46,8 @@ public class dia_to_netherite implements Listener {
                     GetKitSelect(killer);
                     playerinmap.remove(killer.getName());
                     playerinmap.remove(target.getName());
-                    PRAF.combatList.put(killer.getName(), 0);
-                    PRAF.combatList.put(target.getName(), 0);
+                    Core.combatList.put(killer.getName(), 0);
+                    Core.combatList.put(target.getName(), 0);
                     return;
                 }
                 ItemStack armorHead = new ItemStack(Material.NETHERITE_HELMET);
