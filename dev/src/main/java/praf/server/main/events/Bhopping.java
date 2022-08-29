@@ -23,6 +23,7 @@ public class Bhopping implements Listener {
                 player.setFoodLevel(player.getFoodLevel() - 3);
                 player.setSneaking(false);
                 player.setVelocity(player.getLocation().getDirection());
+                player.setSneaking(false);
             }
         }
 //        if (player.getLocation().getWorld().getName().endsWith("world_nether")) {
