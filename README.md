@@ -1,4 +1,4 @@
-# **Netherite-Game**
+# **Netherite-Game** --{DisContinue}--
 A 1.19 Minecraft server that includes unique minigames such as Warden Chase, Netherite Stack, and many more coming soon.
 
 # What is Warden Chase?
